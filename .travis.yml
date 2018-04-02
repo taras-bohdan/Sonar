@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- '8'
+script:
+- npm test
+deploy:
+  provider: heroku
+  api_key:
+    secure: sdcc9zXa6pB0pKRGYCQEfb5pSNvmM52FN6Ubs+mz9JSAwldbVoy4AoKpen1Y0DyPI83eurHeUL2xbQlYKAEWhNkv0h5qY5NbEG4Dy5hmAXT4jsiAdyiqXlGnxv2Mwhk+V8lhB+zz7+Vh62TpCNPccDc9dJ3cuFBXhpyVttMkdwGYYlnwQR3jBTRsRebQY/HsjGe/bpdVBUuuK9cp5loaxarbpYZnh262mwWrhA6/+w5Zmc8wk9R2e8PVbFbmvOaIS22XmE86Kyxw/ClC6D3FqjF1KEeWh/1XFhQEW4Jz2hM59Whl7De1itvjn9lsSOL9IqAI6tM50EWCLV7TaAKgnAdt/XTK1NAR0JWGSIsfgcoeHajg31OH/1GJFiDFfNBqpkFa6ACTZic/CqdjLdkw+UYcLaXjFmOe1KXDoNXG7oEkY+c57P8jHN1ESP1odWcwJLPiIYgMnnB2OfNNXtSFzZqLOBuRg9z+Ql/v0u+0NNsroBrjf9Zo87Gg/n79KbIWD121nsfemY6ee/aAxNXL099eh0qPCdbpNgJOHKmb1EaqXkmYMhDP0u0MGJy+XA/ZkEfDKxmcK1M+cYH7aJtVBzJJuq6bnYP0tG2en1webAPGnlD+CuewI1XQM6WqD4I3u6yPiFZLi+wv7+i7AEM+x2QyVKrp2+cXnaSaX4By5Qo=
+  app: xdr-location-tracker

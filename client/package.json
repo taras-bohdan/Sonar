@@ -1,6 +1,6 @@
 {
-  "name": "family-tree",
-  "version": "0.1.0",
+  "name": "location-tracker",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "express": "^4.16.2",
