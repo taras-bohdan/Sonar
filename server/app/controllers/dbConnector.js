@@ -1,4 +1,4 @@
-import MongoClient from 'mongodb';
+import mongoose from 'mongoose';
 import config from '../config/default';
 import { generateRandomUserData } from '../../data-mocks/data-mocks.json';
 
@@ -10,24 +10,10 @@ export class DbConnector {
   }
 
   connect() {
-    return new Promise((resolve, reject) => {
-      MongoClient.connect(this.url, (err, client) => {
-        if (err) {
-          reject(err);
-        }
-        this.client = client;
-        console.log('Connected successfully to server');
-        this.db = client.db(this.name);
-        resolve(this);
-      });
-    });
+    return mongoose.connect(`${this.url}/${this.name}`);
   }
 
   getCollectionByName(collectionName) {
     return this.db.collection(collectionName);
-  }
-
-  closeConnection() {
-    this.client.close();
   }
 }

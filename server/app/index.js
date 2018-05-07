@@ -2,8 +2,11 @@ import Koa from 'koa';
 
 import config from './config/default';
 import routers from './routers';
+import bodyParser from 'koa-bodyparser';
 
 const koa = new Koa();
+
+koa.use(bodyParser());
 
 koa.use(async (ctx, next) => {
   // Log the request to the console
@@ -11,7 +14,6 @@ koa.use(async (ctx, next) => {
   // Pass the request to the next middleware function
   await next();
 });
-
 
 koa.use(routers);
 koa.listen(config.port);
