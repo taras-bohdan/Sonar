@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { userSchema } from './user';
+import { userSchema } from './user.model';
 
 /**
  * ----- Device -----

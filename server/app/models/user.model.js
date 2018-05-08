@@ -12,4 +12,5 @@ export const userSchema = mongoose.Schema({
   photo: String,
 });
 
-export const User = mongoose.model('User', userSchema);
+// TODO might be used in future
+// export const User = mongoose.model('User', userSchema);

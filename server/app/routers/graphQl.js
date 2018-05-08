@@ -1,7 +1,7 @@
 import Router from 'koa-router';
 import { graphiqlKoa } from 'apollo-server-koa';
 
-import graphQlExample from '../controllers/grahpQlExample';
+import graphQlExample from '../controllers/userLocation.controller';
 
 const router = new Router();
 
