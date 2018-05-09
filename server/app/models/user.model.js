@@ -14,3 +14,4 @@ export const userSchema = mongoose.Schema({
 
 // TODO might be used in future
 // export const User = mongoose.model('User', userSchema);
+
