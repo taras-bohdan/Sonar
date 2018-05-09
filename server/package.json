@@ -4,7 +4,8 @@
   "scripts": {
     "client": "cd ../client && yarn start",
     "server": "nodemon",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "test": "echo test"
   },
   "dependencies": {
     "apollo-server-koa": "^1.3.4",
