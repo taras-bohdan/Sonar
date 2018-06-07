@@ -2,6 +2,6 @@
   "name": "location-tracker",
   "version": "0.0.1",
   "scripts": {
-    "test": "echo test"
+    "test": "cd client && yarn run lint"
   }
 }

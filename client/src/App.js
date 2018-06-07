@@ -1,40 +1,55 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
+// Material
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import logo from './logo.svg';
 import './App.css';
+import Login from './login/Login';
+
+
+export const theme = createMuiTheme({
+  palette: {
+    primary: {
+      // light: '#757ce8',
+      main: '#03DAC6',
+      // dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
+
 
 class App extends Component {
   state = {
-    response: ''
+    response: '',
   };
 
   componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({response: res.express}))
-      .catch(err => console.log(err));
+    /*this.callApi()
+      .then(res => this.setState({ response: res.express }))
+      .catch(err => console.log(err));*/
   }
 
-  callApi = async () => {
+  /*callApi = async () => {
     const response = await fetch('/api/hello');
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
 
     return body;
-  };
+  };*/
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
-          <h1 className="App-title">{this.state.response}</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <MuiThemeProvider theme={theme}>
+        <Login/>
+      </MuiThemeProvider>
     );
   }
 }
