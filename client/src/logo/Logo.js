@@ -3,18 +3,18 @@ import { withStyles } from '@material-ui/core/styles';
 
 import './Logo.css';
 
-const styles = theme =>{
+const styles = theme => {
   return {
     logo: {
       color: theme.palette.primary.main,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      transform: 'scale(0.7)'
+      transform: 'scale(0.7)',
     },
     logoIcon: {
       position: 'relative',
-      animation: 'spin 10s linear infinite'
+      animation: 'spin 10s linear infinite',
     },
     pulseElements: {
       position: 'absolute',
@@ -52,8 +52,10 @@ const styles = theme =>{
       fontSize: '10em',
       fontWeight: 'bold',
       margin: '0 16px',
+      cursor: 'default',
+      userSelect: 'none',
     },
-  }
+  };
 };
 
 class Logo extends Component {

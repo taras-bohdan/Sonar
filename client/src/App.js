@@ -3,7 +3,6 @@ import 'whatwg-fetch';
 // Material
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import './App.css';
 import Login from './login/Login';
 
 
@@ -22,6 +21,11 @@ export const theme = createMuiTheme({
       contrastText: '#000',
     },
   },
+  props: {
+    TextField: {
+
+    }
+  }
 });
 
 
