@@ -10,18 +10,9 @@ import config from './config/default';
 import routers from './routers';
 require('dotenv');
 
-
-
-const options = {
-  key: fs.readFileSync(join(__dirname, '../ssl/server.key')),
-  cert: fs.readFileSync(join(__dirname, '../ssl/server.crt')),
-};
-
-
 const app = new Koa();
 
 app
-  .use(cors())
   .use(async (ctx, next) => {
     try {
       // Log the request to the console
@@ -33,6 +24,7 @@ app
       ctx.body = e.message;
     }
   })
+  .use(cors())
   .use(bodyParser())
   .use(routers);
 
@@ -41,6 +33,11 @@ mongoose.connect(`${config.db.url}/${config.db.name}`).then(() => {
 });
 
 
+const options = {
+  key: fs.readFileSync(join(__dirname, '../ssl/server.key')),
+  cert: fs.readFileSync(join(__dirname, '../ssl/server.crt')),
+  allowHTTP1: true, // TODO disable this later
+};
 const server = http2
   .createSecureServer(options, app.callback());
 server.listen(config.port);

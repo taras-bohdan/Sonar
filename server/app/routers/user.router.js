@@ -6,14 +6,13 @@ import { verifyUserToken } from '../utils/jwt';
 const router = new Router();
 
 /**
- * test: curl -d '{"email": "xdr-xdr@gmail.com", "username": "xdr", "firstName": "Taras", "lastName": "Bohdan",
- * "password": "123qweasd"}' --http2 --insecure https://localhost:5500/createUser -H "Content-Type: application/json"
+ * test: curl -d '{"email": "xdr-xdr@gmail.com", "username": "xdr", "firstName": "Taras", "lastName": "Bohdan", "password": "123qweasd"}' --http2 --insecure https://localhost:5500/createUser -H "Content-Type: application/json"
  */
 router.post('/user/singUp', async(ctx) => {
   ctx.body = await saveUser(ctx.request.body);
 });
 
-router.get('/user/singIn', async(ctx) => {
+router.post('/user/singIn', async(ctx) => {
   ctx.body = await verifyUser(ctx.query);
 });
 

@@ -2767,6 +2767,12 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
+follow-redirects@^1.3.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.0.tgz#234f49cf770b7f35b40e790f636ceba0c3a0ab77"
+  dependencies:
+    debug "^3.1.0"
+
 for-in@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -5027,23 +5033,23 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
 
-popmotion-pose@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/popmotion-pose/-/popmotion-pose-2.0.1.tgz#2ded2a460cc011245432f6bb784d13e53de67050"
+popmotion-pose@^2.0.3:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/popmotion-pose/-/popmotion-pose-2.0.6.tgz#aa00325365a3d952980b6184334c3643f3a45108"
   dependencies:
-    popmotion "^8.2.3"
-    pose-core "^0.7.3"
+    popmotion "^8.2.5"
+    pose-core "^0.7.4"
     style-value-types "^1.0.10"
     tslib "^1.9.1"
 
-popmotion@^8.2.3:
-  version "8.2.3"
-  resolved "https://registry.yarnpkg.com/popmotion/-/popmotion-8.2.3.tgz#519b064388fd281245ef49eae21ed98206fec099"
+popmotion@^8.2.5:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/popmotion/-/popmotion-8.3.2.tgz#ee4ed43bccbab285e0e81fe6d8a7472a34525e36"
   dependencies:
     framesync "^3.1.9"
     hey-listen "^1.0.5"
-    style-value-types "^1.0.8"
-    stylefire "^2.0.2"
+    style-value-types "^3.0.2"
+    stylefire "^2.0.5"
     tslib "^1.9.1"
 
 popper.js@^1.14.1:
@@ -5058,9 +5064,9 @@ portfinder@^1.0.9:
     debug "^2.2.0"
     mkdirp "0.5.x"
 
-pose-core@^0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/pose-core/-/pose-core-0.7.3.tgz#9cb2e97eb860cb7c28e17cf269f9a8d72c244d9a"
+pose-core@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/pose-core/-/pose-core-0.7.4.tgz#21d64b6efe5eb7e0d1c2e7a111d0836ea00cdea5"
   dependencies:
     "@types/invariant" "^2.2.29"
     "@types/node" "^10.0.5"
@@ -5617,12 +5623,12 @@ react-popper@^0.10.0:
     popper.js "^1.14.1"
     prop-types "^15.6.1"
 
-react-pose@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/react-pose/-/react-pose-2.1.1.tgz#f24b85a30c7f6beef5c9f0bdc152f8dd0eb47841"
+react-pose@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-pose/-/react-pose-2.1.2.tgz#d3ad0cb2f7a56edef34d4626cc5e78ceefd34663"
   dependencies:
     hey-listen "^1.0.5"
-    popmotion-pose "^2.0.1"
+    popmotion-pose "^2.0.3"
     tslib "^1.9.1"
 
 react-scripts@1.1.4:
@@ -6448,17 +6454,22 @@ style-loader@0.19.0:
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
 
-style-value-types@^1.0.10, style-value-types@^1.0.6, style-value-types@^1.0.8:
+style-value-types@^1.0.10:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/style-value-types/-/style-value-types-1.0.10.tgz#e46a11922f7b9efe265fb22bfd3b5429611bc016"
 
-stylefire@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/stylefire/-/stylefire-2.0.2.tgz#2c0c5d2749a22f71d3c5ae95889dcee1b3597599"
+style-value-types@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/style-value-types/-/style-value-types-3.0.2.tgz#6623aba812390a681ab84c7153097d8542518604"
+
+stylefire@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/stylefire/-/stylefire-2.0.5.tgz#f4b546b0f662dbcc255196802134a9c9e03c92d6"
   dependencies:
     framesync "^3.1.8"
     hey-listen "^1.0.4"
-    style-value-types "^1.0.6"
+    style-value-types "^3.0.2"
+    tslib "^1.9.1"
 
 supports-color@^0.2.0:
   version "0.2.0"
