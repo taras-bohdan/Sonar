@@ -1,5 +1,6 @@
 import compose from 'koa-compose';
-import coreRouter from './coreRouter';
-import graphQlRouter from './graphQl';
+import coreRouter from './core.router';
+import userRouter from './user.router';
+import graphQlRouter from './graphql.router';
 
-export default compose([graphQlRouter, ...coreRouter]);
+export default compose([graphQlRouter, ...coreRouter, ...userRouter]);

@@ -1,11 +1,11 @@
 import { graphqlKoa } from 'apollo-server-koa';
 import { makeExecutableSchema } from 'graphql-tools';
-import UserLocation from '../models/userLocation';
+import UserLocation from '../models/user-location.model';
 
 const typeDefs = `
   scalar Date
 
-  type User {
+  type DeviceUser {
     id: Int!
     name: String
     birthday: Date
@@ -39,8 +39,8 @@ const typeDefs = `
     mac: String
   }
   
-  type UserLocation {
-    user: User
+  type DeviceUserLocation {
+    deviceUser: DeviceUser
     connection: Connection
     device: Device
     date: Date
@@ -48,22 +48,22 @@ const typeDefs = `
 
   # the schema allows the following query:
   type Query {
-    userLocations: [UserLocation]
-    user(name: String): User
-    userById(id: Int!): User
+    deviceUserLocations: [DeviceUserLocation]
+    deviceUser(name: String): DeviceUser
+    deviceUserById(id: Int!): DeviceUser
   }
 `;
 
 const resolvers = {
   Query: {
-    userLocations: async () => await UserLocation.find(),
-    user: async (_, { name }) => {
-      const usersLocation = await UserLocation.findOne({ 'user.name': name }, { user: 1 });
-      return usersLocation && usersLocation.user;
+    deviceUserLocations: async () => await UserLocation.find(),
+    deviceUser: async (_, { name }) => {
+      const deviceUsersLocation = await UserLocation.findOne({ 'deviceUser.name': name }, { user: 1 });
+      return deviceUsersLocation && deviceUsersLocation.user;
     },
-    userById: async (_, { id }) => {
-      const usersLocation = await UserLocation.findOne({ 'user.id': id }, { user: 1 });
-      return usersLocation && usersLocation.user;
+    deviceUserById: async (_, { id }) => {
+      const deviceUsersLocation = await UserLocation.findOne({ 'deviceUser.id': id }, { user: 1 });
+      return deviceUsersLocation && deviceUsersLocation.user;
     },
   },
 };

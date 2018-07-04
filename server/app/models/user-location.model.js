@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { userSchema } from './user.model';
+import { deviceUserSchema } from './device-user.model';
 
 /**
  * ----- Device -----
@@ -39,7 +39,7 @@ const connectionSchema = mongoose.Schema({
  */
 
 const userLocationSchema = mongoose.Schema({
-  user: userSchema,
+  deviceUser: deviceUserSchema,
   connection: connectionSchema,
   device: deviceSchema,
   date: Date,

@@ -6,7 +6,7 @@ const config = {
       url: 'mongodb://localhost:27017',
       name: 'location',
     },
-    port: process.env.PORT || 5000,
+    port: process.env.PORT || 5500,
   },
 };
 
