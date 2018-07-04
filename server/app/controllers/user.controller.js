@@ -26,6 +26,9 @@ export async function verifyUser(userToVerify) {
     { email: userToVerify.email },
   ]);
 
+  if(!user){
+    throw new Error('User not found');
+  }
   // test a matching password
   const isMatch = await user.comparePassword(userToVerify.password);
   if (!isMatch) {
@@ -33,7 +36,7 @@ export async function verifyUser(userToVerify) {
   }
   const token = generateToken(user);
   return {
-    user: user,
+    userId: user._id,
     token: token,
   };
 }

@@ -8,12 +8,12 @@ const router = new Router();
 /**
  * test: curl -d '{"email": "xdr-xdr@gmail.com", "username": "xdr", "firstName": "Taras", "lastName": "Bohdan", "password": "123qweasd"}' --http2 --insecure https://localhost:5500/createUser -H "Content-Type: application/json"
  */
-router.post('/user/singUp', async(ctx) => {
+router.post('/user/signUp', async(ctx) => {
   ctx.body = await saveUser(ctx.request.body);
 });
 
-router.post('/user/singIn', async(ctx) => {
-  ctx.body = await verifyUser(ctx.query);
+router.post('/user/signIn', async(ctx) => {
+  ctx.body = await verifyUser(ctx.request.body);
 });
 
 //get current user from token

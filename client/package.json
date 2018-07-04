@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^1.1.0",
     "@material-ui/icons": "^1.0.0",
+    "axios": "^0.18.0",
     "express": "^4.16.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -28,5 +29,6 @@
       "target": "https://localhost:5500",
       "logLevel": "debug",
       "secure": false
-    }}
+    }
+  }
 }

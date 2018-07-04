@@ -3,6 +3,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import posed from 'react-pose';
+import axios from 'axios';
 
 import Logo from '../logo/Logo';
 
@@ -76,13 +77,9 @@ class Login extends Component {
 
   login() {
 
-    fetch('/user/signIn', {
-      method: 'POST',
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
-      }),
-      mode: 'cors',
+    axios.post('/user/signIn', {
+      email: this.state.email,
+      password: this.state.password,
     })
       .then(res => {
         console.log(res);

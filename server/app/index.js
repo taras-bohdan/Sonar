@@ -8,7 +8,7 @@ import cors from '@koa/cors';
 
 import config from './config/default';
 import routers from './routers';
-require('dotenv');
+require('dotenv').config();
 
 const app = new Koa();
 
