@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import 'whatwg-fetch';
+import { Route, Switch } from 'react-router-dom';
 // Material
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 import Login from './login/Login';
+import { PageNotFound } from './page-not-found/page-not-found';
 
 
 export const theme = createMuiTheme({
@@ -22,37 +23,20 @@ export const theme = createMuiTheme({
     },
   },
   props: {
-    TextField: {
-
-    }
-  }
+    TextField: {},
+  },
 });
 
 
 class App extends Component {
-  state = {
-    response: '',
-  };
-
-  componentDidMount() {
-    /*this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));*/
-  }
-
-  /*callApi = async () => {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };*/
-
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <Login/>
+        <Switch>
+          <Route exact path='/' component={Login}/>
+          <Route exact path='/login' component={Login}/>
+          <Route component={PageNotFound}/>
+        </Switch>
       </MuiThemeProvider>
     );
   }
