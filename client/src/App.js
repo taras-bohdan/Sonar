@@ -5,6 +5,8 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 import Login from './login/Login';
 import { PageNotFound } from './page-not-found/page-not-found';
+import { PrivateRoute } from './shared/PrivateRoute/PrivateRoute';
+import { Auth } from './shared/Auth/Auth';
 
 
 export const theme = createMuiTheme({
@@ -27,14 +29,17 @@ export const theme = createMuiTheme({
   },
 });
 
+const Protected = () => <h3>Protected</h3>;
 
 class App extends Component {
+  auth = new Auth();
+
   render() {
     return (
       <MuiThemeProvider theme={theme}>
         <Switch>
-          <Route exact path='/' component={Login}/>
-          <Route exact path='/login' component={Login}/>
+          <PrivateRoute exact path='/' isAuthenticated={this.auth.isAuthenticated} component={Protected}/>
+          <Route exact path='/login' render={(props) => <Login {...props} authService={this.auth}/>}/>
           <Route component={PageNotFound}/>
         </Switch>
       </MuiThemeProvider>

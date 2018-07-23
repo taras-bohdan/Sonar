@@ -3,9 +3,11 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import posed from 'react-pose';
-import axios from 'axios';
+import { object, instanceOf } from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import Logo from '../logo/Logo';
+import { Auth } from '../shared/Auth/Auth';
 
 const LogoContainer = posed.div({
   idle: {
@@ -61,6 +63,7 @@ class Login extends Component {
     showLoginForm: false,
     email: null,
     password: null,
+    redirectAfterLogin: false,
   };
 
   scaleOnHover(hovering) {
@@ -75,30 +78,48 @@ class Login extends Component {
     return this.state.hovering ? 'hovered' : 'idle';
   }
 
-  login() {
-
-    axios.post('/user/signIn', {
-      email: this.state.email,
-      password: this.state.password,
-    })
+  login = () => {
+    this.props.authService.login(this.state.email, this.state.password)
       .then(res => {
-        console.log(res);
+        this.setState({
+          redirectAfterLogin: true,
+        });
       })
       .catch(err => {
         console.log(err);
       });
-  }
+  };
+
+  onMouseEnter = () => {
+    this.scaleOnHover(true);
+  };
+
+  onMouseLeave = () => {
+    this.scaleOnHover(false);
+  };
+
+  onLogoClick = () => !this.state.showLoginForm && this.setState({ showLoginForm: true });
+
+  onTextFieldChange = (fieldName) => {
+    return (event) => this.setState({ [fieldName]: event.target.value });
+  };
 
   render() {
     const { classes } = this.props;
+    const { from } = this.props.location.state || { from: { pathname: '/' } };
+    const { redirectAfterLogin } = this.state;
+
+    if (redirectAfterLogin) {
+      return <Redirect to={from}/>;
+    }
 
     return (
       <div className={classes.loginPage}>
         <LogoContainer
           pose={this.logoState}
-          onMouseEnter={() => this.scaleOnHover(true)}
-          onMouseLeave={() => this.scaleOnHover(false)}
-          onClick={() => !this.state.showLoginForm && this.setState({ showLoginForm: true })}
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+          onClick={this.onLogoClick}
         >
           <Logo/>
         </LogoContainer>
@@ -124,9 +145,7 @@ class Login extends Component {
                 input: classes.inputLabel,
               },
             }}
-            onChange={(event) => {
-              this.setState({ email: event.target.value });
-            }}
+            onChange={this.onTextFieldChange('email')}
           />
           <TextField
             id="password-input"
@@ -147,15 +166,13 @@ class Login extends Component {
                 input: classes.inputLabel,
               },
             }}
-            onChange={(event) => {
-              this.setState({ password: event.target.value });
-            }}
+            onChange={this.onTextFieldChange('password')}
           />
           <div className={classes.buttonContainer}>
             <Button
               color="primary"
               className={classes.button}
-              onClick={this.login.bind(this)}
+              onClick={this.login}
             >Login</Button>
           </div>
         </LoginForm>
@@ -165,3 +182,9 @@ class Login extends Component {
 }
 
 export default withStyles(styles, { withTheme: true })(Login);
+
+
+Login.propTypes = {
+  classes: object,
+  authService: instanceOf(Auth).required,
+};
