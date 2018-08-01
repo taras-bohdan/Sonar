@@ -3,10 +3,10 @@ import { Route, Switch } from 'react-router-dom';
 // Material
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import Login from './login/Login';
-import { PageNotFound } from './page-not-found/page-not-found';
-import { PrivateRoute } from './shared/PrivateRoute/PrivateRoute';
-import { Auth } from './shared/Auth/Auth';
+import Login from './pages/LoginPage/Login';
+import { PageNotFound } from './pages/page-not-found/PageNotFound';
+import { PrivateRoute } from './pages/PrivateRoute/PrivateRoute';
+import { authService } from './services/auth/authService';
 
 
 export const theme = createMuiTheme({
@@ -32,7 +32,7 @@ export const theme = createMuiTheme({
 const Protected = () => <h3>Protected</h3>;
 
 class App extends Component {
-  auth = new Auth();
+  auth = new authService();
 
   render() {
     return (

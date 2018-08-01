@@ -6,8 +6,8 @@ import posed from 'react-pose';
 import { object, instanceOf } from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
-import Logo from '../logo/Logo';
-import { Auth } from '../shared/Auth/Auth';
+import Logo from '../../components/logo/Logo';
+import { authService } from '../../services/auth/authService';
 
 const LogoContainer = posed.div({
   idle: {
@@ -79,7 +79,7 @@ class Login extends Component {
   }
 
   login = () => {
-    this.props.authService.login(this.state.email, this.state.password)
+    this.props.authService.login(this.state.username, this.state.password)
       .then(res => {
         this.setState({
           redirectAfterLogin: true,
@@ -128,9 +128,8 @@ class Login extends Component {
         >
           <TextField
             required
-            type="email"
-            id="email"
-            label="Email"
+            id="username"
+            label="Username"
             className={classes.textField}
             margin="normal"
             fullWidth
@@ -145,7 +144,7 @@ class Login extends Component {
                 input: classes.inputLabel,
               },
             }}
-            onChange={this.onTextFieldChange('email')}
+            onChange={this.onTextFieldChange('username')}
           />
           <TextField
             id="password-input"
@@ -186,5 +185,5 @@ export default withStyles(styles, { withTheme: true })(Login);
 
 Login.propTypes = {
   classes: object,
-  authService: instanceOf(Auth).required,
+  authService: instanceOf(authService).required,
 };

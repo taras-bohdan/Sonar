@@ -1,6 +1,8 @@
 import { User } from '../models/user.model';
 import { generateToken } from '../utils/jwt';
 
+const invalidUserMsg = 'Username or Password is not valid';
+
 /**
  * Save user into DB
  */
@@ -20,19 +22,19 @@ export async function saveUser(newUser) {
  * Verify user for login
  * test: curl --http2 --insecure "https://localhost:5500/login?userName=xdr&password=123qweasd"
  */
-export async function verifyUser(userToVerify) {
+export async function verifyUser({username, password}) {
   const user = await User.findOne().or([
-    { username: userToVerify.userName },
-    { email: userToVerify.email },
+    { username },
+    { email: username },
   ]);
 
   if(!user){
-    throw new Error('User not found');
+    throw new Error(invalidUserMsg);
   }
   // test a matching password
-  const isMatch = await user.comparePassword(userToVerify.password);
+  const isMatch = await user.comparePassword(password);
   if (!isMatch) {
-    throw new Error('Username or Password is Wrong');
+    throw new Error(invalidUserMsg);
   }
   const token = generateToken(user);
   return {
