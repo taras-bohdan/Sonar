@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import Route from 'react-router-dom/es/Route';
 import Redirect from 'react-router-dom/es/Redirect';
-import { func, bool } from 'prop-types';
+import { func, shape, bool } from 'prop-types';
+import { connect } from 'react-redux';
 
-export class PrivateRoute extends Component {
+class PrivateRoute extends Component {
   render() {
-    const { component: Component, isAuthenticated, ...rest } = this.props;
+    const { component: Component, authentication, ...rest } = this.props;
     return (
       <Route {...rest} render={
-        props => isAuthenticated ?
+        props => authentication.loggedIn ?
           (<Component {...props} />) :
           (<Redirect
             to={{
@@ -21,7 +22,18 @@ export class PrivateRoute extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  const { authentication } = state;
+  return {
+    authentication,
+  };
+}
+
+export default connect(mapStateToProps)(PrivateRoute);
+
 PrivateRoute.propTypes = {
   component: func.isRequired,
-  isAuthenticated: bool.isRequired,
+  authentication: shape({
+    loggedIn: bool,
+  }),
 };

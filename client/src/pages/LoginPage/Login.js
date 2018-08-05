@@ -3,11 +3,12 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import posed from 'react-pose';
-import { object, instanceOf } from 'prop-types';
+import { object } from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { userActions } from '../../actions';
 
-import Logo from '../../components/logo/Logo';
-import { authService } from '../../services/auth/authService';
+import Logo from '../../components/Logo/Logo';
+import { connect } from 'react-redux';
 
 const LogoContainer = posed.div({
   idle: {
@@ -63,7 +64,6 @@ class Login extends Component {
     showLoginForm: false,
     email: null,
     password: null,
-    redirectAfterLogin: false,
   };
 
   scaleOnHover(hovering) {
@@ -79,15 +79,8 @@ class Login extends Component {
   }
 
   login = () => {
-    this.props.authService.login(this.state.username, this.state.password)
-      .then(res => {
-        this.setState({
-          redirectAfterLogin: true,
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    const { dispatch } = this.props;
+    dispatch(userActions.login(this.state.username, this.state.password));
   };
 
   onMouseEnter = () => {
@@ -105,11 +98,10 @@ class Login extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, loggedIn } = this.props;
     const { from } = this.props.location.state || { from: { pathname: '/' } };
-    const { redirectAfterLogin } = this.state;
 
-    if (redirectAfterLogin) {
+    if (loggedIn) {
       return <Redirect to={from}/>;
     }
 
@@ -180,10 +172,16 @@ class Login extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(Login);
+function mapStateToProps(state) {
+  const { loggingIn, loggedIn } = state.authentication;
+  return {
+    loggingIn,
+    loggedIn,
+  };
+}
 
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps)(Login));
 
 Login.propTypes = {
   classes: object,
-  authService: instanceOf(authService).required,
 };

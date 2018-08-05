@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-// Material
+import { Route, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 import Login from './pages/LoginPage/Login';
-import { PageNotFound } from './pages/page-not-found/PageNotFound';
-import { PrivateRoute } from './pages/PrivateRoute/PrivateRoute';
-import { authService } from './services/auth/authService';
+import { PageNotFound } from './pages/PageNotFound/PageNotFound';
+import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
 
 
 export const theme = createMuiTheme({
@@ -32,14 +32,12 @@ export const theme = createMuiTheme({
 const Protected = () => <h3>Protected</h3>;
 
 class App extends Component {
-  auth = new authService();
-
   render() {
     return (
       <MuiThemeProvider theme={theme}>
         <Switch>
-          <PrivateRoute exact path='/' isAuthenticated={this.auth.isAuthenticated} component={Protected}/>
-          <Route exact path='/login' render={(props) => <Login {...props} authService={this.auth}/>}/>
+          <PrivateRoute exact path='/' component={Protected}/>
+          <Route exact path='/login' render={(props) => <Login {...props}/>}/>
           <Route component={PageNotFound}/>
         </Switch>
       </MuiThemeProvider>
@@ -47,4 +45,13 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  const { alert } = state;
+  return {
+    alert,
+  };
+}
+
+const connectedApp = withRouter(connect(mapStateToProps)(App));
+
+export default connectedApp;
