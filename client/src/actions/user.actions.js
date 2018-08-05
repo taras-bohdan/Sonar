@@ -20,8 +20,8 @@ function login(username, password) {
         },
         error => {
           // dispatch login fail action and show alert
-          dispatch(failure(error));
-          dispatch(alertActions.error(error));
+          dispatch(failure(error.response.data));
+          dispatch(alertActions.error(error.response.data));
         },
       );
   };

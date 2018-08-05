@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import posed from 'react-pose';
+import { Redirect } from 'react-router-dom';
+import { object } from 'prop-types';
+import { connect } from 'react-redux';
+
 import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import Button from '@material-ui/core/Button';
-import posed from 'react-pose';
-import { object } from 'prop-types';
-import { Redirect } from 'react-router-dom';
-import { userActions } from '../../actions';
 
+import { userActions } from '../../actions';
 import Logo from '../../components/Logo/Logo';
-import { connect } from 'react-redux';
+
 
 const LogoContainer = posed.div({
   idle: {
@@ -54,6 +57,7 @@ const styles = theme => ({
   buttonContainer: {
     display: 'flex',
     justifyContent: 'center',
+    flexDirection: 'column',
   },
 });
 
@@ -98,7 +102,7 @@ class Login extends Component {
   };
 
   render() {
-    const { classes, loggedIn } = this.props;
+    const { classes, loggedIn, loggingIn } = this.props;
     const { from } = this.props.location.state || { from: { pathname: '/' } };
 
     if (loggedIn) {
@@ -165,6 +169,7 @@ class Login extends Component {
               className={classes.button}
               onClick={this.login}
             >Login</Button>
+            {loggingIn && <LinearProgress/>}
           </div>
         </LoginForm>
       </div>

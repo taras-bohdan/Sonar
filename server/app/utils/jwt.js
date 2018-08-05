@@ -19,7 +19,7 @@ export async function verifyUserToken(token) {
     '_id': u._id,
   });
 
-  var newToken = generateToken(user);
+  const newToken = generateToken(user);
   return {
     user,
     token: newToken,

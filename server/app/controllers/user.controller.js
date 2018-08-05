@@ -22,14 +22,15 @@ export async function saveUser(newUser) {
  * Verify user for login
  * test: curl --http2 --insecure "https://localhost:5500/login?userName=xdr&password=123qweasd"
  */
-export async function verifyUser({username, password}) {
+export async function verifyUser(ctx) {
+  const {username, password} = ctx.request.body;
   const user = await User.findOne().or([
     { username },
     { email: username },
   ]);
 
   if(!user){
-    throw new Error(invalidUserMsg);
+    ctx.throw(404, invalidUserMsg);
   }
   // test a matching password
   const isMatch = await user.comparePassword(password);

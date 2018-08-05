@@ -7,6 +7,7 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Login from './pages/LoginPage/Login';
 import { PageNotFound } from './pages/PageNotFound/PageNotFound';
 import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
+import Alert from './components/Alert/Alert';
 
 
 export const theme = createMuiTheme({
@@ -40,6 +41,7 @@ class App extends Component {
           <Route exact path='/login' render={(props) => <Login {...props}/>}/>
           <Route component={PageNotFound}/>
         </Switch>
+        <Alert/>
       </MuiThemeProvider>
     );
   }

@@ -13,11 +13,11 @@ router.post('/user/signUp', async(ctx) => {
 });
 
 router.post('/user/signIn', async(ctx) => {
-  ctx.body = await verifyUser(ctx.request.body);
+  ctx.body = await verifyUser(ctx);
 });
 
 //get current user from token
-router.get('/user/token', (ctx, next) => {
+router.get('/user/token', (ctx) => {
   // check header or url parameters or post parameters for token
   const token = ctx.request.body.token || ctx.query.token;
   if (!token) {
