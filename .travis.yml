@@ -2,6 +2,8 @@ language: node_js
 node_js:
 - '10'
 script:
+- cd client && npm install
+- cd ../server && npm install
 - yarn run lint-client
 - yarn run lint-server
 - yarn run test-client
