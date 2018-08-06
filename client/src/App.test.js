@@ -1,8 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import MemoryRouter from 'react-router-dom/MemoryRouter';
+import { Provider } from 'react-redux';
 
-it('renders without crashing', () => {
+import App from './App';
+import { store } from './helpers';
+
+test('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(
+    <Provider store={store}>
+      <MemoryRouter>
+        <App/>
+      </MemoryRouter>
+    </Provider>,
+    div,
+  );
 });

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Route from 'react-router-dom/es/Route';
-import Redirect from 'react-router-dom/es/Redirect';
+import Route from 'react-router-dom/Route';
+import Redirect from 'react-router-dom/Redirect';
 import { func, shape, bool } from 'prop-types';
 import { connect } from 'react-redux';
 

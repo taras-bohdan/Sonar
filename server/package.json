@@ -1,12 +1,15 @@
 {
-  "name": "location-tracker",
+  "name": "sonar-server",
   "version": "1.0.0",
+  "license": "MIT",
+  "repository": "https://github.com/taras-bohdan/Sonar",
   "scripts": {
     "client": "cd ../client && yarn start",
     "server": "nodemon",
     "start": "nodemon",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "test": "echo test"
+    "test": "echo test",
+    "lint": "eslint --ext=js ."
   },
   "dependencies": {
     "@koa/cors": "^2.2.2",
@@ -25,13 +28,11 @@
     "pcap-parser": "^0.2.1"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.3",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
     "concurrently": "^3.5.1",
     "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0"
+    "eslint-plugin-import": "^2.9.0"
   }
 }

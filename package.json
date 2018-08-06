@@ -1,8 +1,11 @@
 {
-  "name": "location-tracker",
-  "version": "0.0.1",
+  "name": "sonar",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": "https://github.com/taras-bohdan/Sonar",
   "scripts": {
-    "test": "cd client && yarn run lint",
+    "lint-client": "cd client && yarn run lint",
+    "lint-server": "cd server && yarn run lint",
     "start": "cd server && yarn run dev"
   }
 }

@@ -1,2 +1,8 @@
-Location tracker [![Build Status](https://travis-ci.org/taras-bohdan/location-tracker.svg?branch=master)](https://travis-ci.org/taras-bohdan/location-tracker)
+Sonar [![Build Status](https://travis-ci.org/taras-bohdan/Sonar.svg?branch=master)](https://travis-ci.org/taras-bohdan/Sonar)
 ----------------
+ReactJs training project
+
+To start:
+```npm
+npm start || yarn start
+```
