@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
-import { object } from 'prop-types';
+import { object, func } from 'prop-types';
+
 import { userActions } from '../../actions';
 
 const styles = theme => ({
@@ -31,6 +32,7 @@ class Administration extends Component {
 
 Administration.propTypes = {
   classes: object.isRequired,
+  dispatch: func,
 };
 
 /**

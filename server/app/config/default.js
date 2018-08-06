@@ -7,6 +7,10 @@ const config = {
       name: 'location',
     },
     port: process.env.PORT || 5500,
+    logs: {
+      dir: 'logs',
+      fileName: 'log'
+    }
   },
 };
 

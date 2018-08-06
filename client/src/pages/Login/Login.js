@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import posed from 'react-pose';
 import { Redirect } from 'react-router-dom';
-import { object } from 'prop-types';
+import { object, bool, func } from 'prop-types';
 import { connect } from 'react-redux';
 
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -191,5 +191,9 @@ function mapStateToProps(state) {
 export default withStyles(styles, { withTheme: true })(connect(mapStateToProps)(Login));
 
 Login.propTypes = {
-  classes: object,
+  classes: object.isRequired,
+  dispatch: func,
+  loggedIn: bool,
+  loggingIn: bool,
+  location: object,
 };

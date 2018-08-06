@@ -1,6 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
 
+import logger from '../utils/logger';
+
 const UserSchema = new Schema({
   email: {
     type: String,
@@ -50,7 +52,7 @@ async function hashPasswordOnChange(next) {
     user.password = await bcrypt.hash(user.password, salt);
     next();
   } catch (err) {
-    console.log(err);
+    logger.error(err);
   }
 
 }

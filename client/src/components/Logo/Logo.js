@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { object } from 'prop-types';
 
 import './Logo.css';
 
@@ -99,3 +100,7 @@ class Logo extends Component {
 }
 
 export default withStyles(styles, { withTheme: true })(Logo);
+
+Logo.propTypes = {
+  classes: object.isRequired,
+};

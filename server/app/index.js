@@ -8,6 +8,7 @@ import cors from '@koa/cors';
 
 import config from './config/default';
 import routers from './routers';
+import logger from './utils/logger';
 require('dotenv').config();
 
 const app = new Koa();
@@ -16,7 +17,7 @@ app
   .use(async (ctx, next) => {
     try {
       // Log the request to the console
-      console.log('Url:', ctx.url);
+      logger.info('Url:', ctx.url);
       // Pass the request to the next middleware function
       await next();
     } catch (e) {
@@ -29,7 +30,7 @@ app
   .use(routers);
 
 mongoose.connect(`${config.db.url}/${config.db.name}`).then(() => {
-  console.log('Connected to mongo db successfully');
+  logger.info('Connected to mongo db successfully');
 });
 
 

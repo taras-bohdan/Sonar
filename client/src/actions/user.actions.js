@@ -61,6 +61,7 @@ function login(username, password) {
   }
 }
 
+
 /**
  * Log out from app
  * @returns {{type: string}} - logout action
