@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import Login from './pages/LoginPage/Login';
+import Login from './pages/Login/Login';
+import Administration from './pages/Administration/Administration';
 import { PageNotFound } from './pages/PageNotFound/PageNotFound';
 import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
 import Alert from './components/Alert/Alert';
@@ -30,14 +31,19 @@ export const theme = createMuiTheme({
   },
 });
 
-const Protected = () => <h3>Protected</h3>;
-
+/**
+ * Main app component
+ */
 class App extends Component {
+  /**
+   * Render component
+   * @returns {*} - components HTML structure
+   */
   render() {
     return (
       <MuiThemeProvider theme={theme}>
         <Switch>
-          <PrivateRoute exact path='/' component={Protected}/>
+          <PrivateRoute exact path='/' component={Administration}/>
           <Route exact path='/login' render={(props) => <Login {...props}/>}/>
           <Route component={PageNotFound}/>
         </Switch>
@@ -47,6 +53,9 @@ class App extends Component {
   }
 }
 
+/**
+ * Map state to component properties
+ */
 function mapStateToProps(state) {
   const { alert } = state;
   return {

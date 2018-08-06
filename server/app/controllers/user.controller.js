@@ -23,13 +23,13 @@ export async function saveUser(newUser) {
  * test: curl --http2 --insecure "https://localhost:5500/login?userName=xdr&password=123qweasd"
  */
 export async function verifyUser(ctx) {
-  const {username, password} = ctx.request.body;
+  const { username, password } = ctx.request.body;
   const user = await User.findOne().or([
     { username },
     { email: username },
   ]);
 
-  if(!user){
+  if (!user) {
     ctx.throw(404, invalidUserMsg);
   }
   // test a matching password
@@ -42,4 +42,17 @@ export async function verifyUser(ctx) {
     userId: user._id,
     token: token,
   };
+}
+
+/**
+ * Get all users
+ * @returns {Promise<*>} - list of users
+ */
+export async function getAllUsers() {
+  return await User.find({}, {
+    email: 1,
+    firstName: 1,
+    lastName: 1,
+    _id: 1,
+  });
 }

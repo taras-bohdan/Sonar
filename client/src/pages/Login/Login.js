@@ -177,6 +177,9 @@ class Login extends Component {
   }
 }
 
+/**
+ * Map state to component properties
+ */
 function mapStateToProps(state) {
   const { loggingIn, loggedIn } = state.authentication;
   return {

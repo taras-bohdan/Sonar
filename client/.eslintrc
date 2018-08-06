@@ -15,6 +15,6 @@
         "FunctionExpression": false
       }
     }],
-    "valid-jsdoc": "error"
+    "valid-jsdoc": "warn"
   }
 }

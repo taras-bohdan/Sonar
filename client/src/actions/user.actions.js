@@ -5,8 +5,15 @@ import { alertActions } from './';
 export const userActions = {
   login,
   logout,
+  getAll,
 };
 
+/**
+ * Login
+ * @param {string} username - username or email
+ * @param {string} password - user password
+ * @returns {Function} - login function which returns Promise
+ */
 function login(username, password) {
   return dispatch => {
     // dispatch login request action
@@ -26,20 +33,70 @@ function login(username, password) {
       );
   };
 
+  /**
+   * Create login request action
+   * @param {string} user - user name
+   * @returns {{type: string, user: *}} - user request action
+   */
   function request(user) {
     return { type: userConstants.LOGIN_REQUEST, user };
   }
 
+  /**
+   * Create login success action
+   * @param {string} user - user name
+   * @returns {{type: string, user: *}} - user logged in successfully action
+   */
   function success(user) {
     return { type: userConstants.LOGIN_SUCCESS, user };
   }
 
+  /**
+   * Create login fail action
+   * @param {string} error - error message
+   * @returns {{type: string, error: *}} - login failed action
+   */
   function failure(error) {
     return { type: userConstants.LOGIN_FAILURE, error };
   }
 }
 
+/**
+ * Log out from app
+ * @returns {{type: string}} - logout action
+ */
 function logout() {
   userService.logout();
   return { type: userConstants.LOGOUT };
+}
+
+/**
+ * Get all users
+ * @returns {Function}
+ */
+function getAll() {
+  return dispatch => {
+    dispatch(request());
+
+    userService.getAll()
+      .then(
+        users => dispatch(success(users)),
+        error => {
+          dispatch(failure(error));
+          dispatch(alertActions.error(error));
+        },
+      );
+  };
+
+  function request() {
+    return { type: userConstants.GETALL_REQUEST };
+  }
+
+  function success(users) {
+    return { type: userConstants.GETALL_SUCCESS, users };
+  }
+
+  function failure(error) {
+    return { type: userConstants.GETALL_FAILURE, error };
+  }
 }

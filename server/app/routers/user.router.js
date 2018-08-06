@@ -1,19 +1,25 @@
 import Router from 'koa-router';
-import { saveUser, verifyUser } from '../controllers/user.controller';
+import { getAllUsers, saveUser, verifyUser } from '../controllers/user.controller';
 import { verifyUserToken } from '../utils/jwt';
+import { checkToken } from '../middleware/checkToken.middleware';
 
 
 const router = new Router();
 
 /**
- * test: curl -d '{"email": "xdr-xdr@gmail.com", "username": "xdr", "firstName": "Taras", "lastName": "Bohdan", "password": "123qweasd"}' --http2 --insecure https://localhost:5500/createUser -H "Content-Type: application/json"
+ * test: curl -d '{"email": "xdr-xdr@gmail.com", "username": "xdr", "firstName": "Taras", "lastName": "Bohdan",
+ * "password": "123qweasd"}' --http2 --insecure https://localhost:5500/createUser -H "Content-Type: application/json"
  */
-router.post('/user/signUp', async(ctx) => {
+router.post('/user/signUp', async (ctx) => {
   ctx.body = await saveUser(ctx.request.body);
 });
 
-router.post('/user/signIn', async(ctx) => {
+router.post('/user/signIn', async (ctx) => {
   ctx.body = await verifyUser(ctx);
+});
+
+router.get('/user/getAll', checkToken, async ctx => {
+  ctx.body = await getAllUsers();
 });
 
 //get current user from token
