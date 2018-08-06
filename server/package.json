@@ -9,7 +9,7 @@
     "start": "nodemon",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "test": "echo test",
-    "lint": "eslint --ext=js ."
+    "lint": "./node_modules/.bin/eslint --ext=js ."
   },
   "dependencies": {
     "@koa/cors": "^2.2.2",

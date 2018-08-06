@@ -35,7 +35,7 @@
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "lint": "eslint --ext=js --ext=jsx ."
+    "lint": "./node_modules/.bin/eslint --ext=js --ext=jsx ."
   },
   "proxy": {
     "/user/*": {
