@@ -1,5 +1,5 @@
 require('babel-register')({
-  presets: ["es2015"],
+  presets: ["env"],
 });
 // require the rest of the app that needs to be transpiled after the hook
 require('./app');

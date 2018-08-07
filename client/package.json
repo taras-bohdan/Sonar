@@ -38,7 +38,7 @@
     "test": "react-scripts test --env=jsdom",
     "coverage": "react-scripts test --env=jsdom --coverage",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
-    "lint": "eslint --ext=js --ext=jsx ."
+    "lint": "eslint --ext=js --ext=jsx ./src"
   },
   "proxy": {
     "/user/*": {
