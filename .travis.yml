@@ -6,18 +6,19 @@ install:
 script:
 - yarn run lint && yarn run coverage
 after_script:
-- "cat ./coverage/lcov.info | coveralls --verbose"
+- "cat ./coverage/lcov.info | coveralls"
 notifications:
   webhooks: https://coveralls.io/webhook?repo_token=COVERALLS_REPO_TOKEN
 env:
   global:
     - COVERALLS_PARALLEL=true
+    - CXX=g++-4.8
 matrix:
   include:
     - name: "Client Side"
       env: PROJECT_PART=client
     - name: "Server Side"
-      env: PROJECT_PART=server CXX=g++-4.8
+      env: PROJECT_PART=server
 addons:
   apt:
     sources:
