@@ -6,9 +6,8 @@ install:
 - cd ../server && npm install
 - cd ..
 script:
-- npm run lint-client
-- npm run lint-server
 - npm run test-client
+- npm run test-server
 after_script: # Upload coverage reports
   - COVERALLS_REPO_TOKEN=$coveralls_repo_token yarn run coveralls-client && yarn run coveralls-server
 env:

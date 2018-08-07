@@ -4,9 +4,8 @@
   "license": "MIT",
   "repository": "https://github.com/taras-bohdan/Sonar",
   "scripts": {
-    "lint-client": "cd client && yarn run lint",
-    "lint-server": "cd server && yarn run lint",
-    "test-client": "cd client && yarn coverage",
+    "test-client": "cd client && yarn run lint && yarn coverage",
+    "test-server": "cd server && yarn run lint && yarn coverage",
     "start": "cd server && yarn run dev",
     "coveralls-client": "cd client && yarn run coveralls",
     "coveralls-server": "cd server && yarn run coveralls"
