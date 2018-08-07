@@ -24,7 +24,6 @@
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "concurrently": "^3.5.1",
-    "coveralls": "^3.0.2",
     "eslint": "^4.1.1",
     "eslint-config-react-app": "^2.1.0",
     "eslint-plugin-flowtype": "^2.50.0",
@@ -37,7 +36,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "coverage": "react-scripts test --env=jsdom --coverage",
-    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "lint": "eslint --ext=js --ext=jsx ./src"
   },
   "proxy": {
