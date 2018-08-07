@@ -2,16 +2,18 @@ language: node_js
 node_js:
 - '10'
 install:
-- cd client && npm install
-- cd ../server && npm install
-- cd ..
+- cd $PROJECT_TYPE && npm install
 script:
-- npm run test-client
-- npm run test-server
-after_script: # Upload coverage reports
-  - COVERALLS_REPO_TOKEN=$coveralls_repo_token yarn run coveralls-client && yarn run coveralls-server
+- npm run test-$PROJECT_TYPE
+
+notifications:
+  webhooks: https://coveralls.io/webhook?repo_token=$coveralls_repo_token
 env:
+  - PROJECT_TYPE=server
+  - PROJECT_TYPE=client
   - CXX=g++-4.8
+  global:
+    - COVERALLS_PARALLEL=true
 addons:
   apt:
     sources:
