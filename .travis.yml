@@ -11,8 +11,7 @@ env:
   - PROJECT_TYPE=server
   - PROJECT_TYPE=client
   - CXX=g++-4.8
-  global:
-    - COVERALLS_PARALLEL=true
+  - COVERALLS_PARALLEL=true
 addons:
   apt:
     sources:
