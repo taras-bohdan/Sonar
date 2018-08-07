@@ -10,13 +10,12 @@ notifications:
 env:
   global:
     - COVERALLS_PARALLEL=true
-    - CXX=g++-4.8
 matrix:
   include:
     - name: "Client Side"
       env: PROJECT_PART=client
     - name: "Server Side"
-      env: PROJECT_PART=server
+      env: PROJECT_PART=server CXX=g++-4.8
 addons:
   apt:
     sources:
