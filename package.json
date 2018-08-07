@@ -6,7 +6,8 @@
   "scripts": {
     "lint-client": "cd client && yarn run lint",
     "lint-server": "cd server && yarn run lint",
-    "test-client": "cd client && yarn test",
-    "start": "cd server && yarn run dev"
+    "test-client": "cd client && yarn coverage",
+    "start": "cd server && yarn run dev",
+    "coveralls": "cd client && yarn run coveralls"
   }
 }
