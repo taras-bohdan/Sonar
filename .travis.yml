@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - '10'
 install:
-- cd $PROJECT_PART && npm install
+- cd $PROJECT_PART && ls -l && npm install
 script:
 - npm run test-$PROJECT_PART
 notifications:
