@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - '10'
 install:
-- cd $PROJECT_PART && ls -l && npm install
+- cd $PROJECT_PART && echo $PROJECT_PART  && npm install
 script:
 - npm run test-$PROJECT_PART
 notifications:
@@ -16,7 +16,7 @@ matrix:
     - name: "Client Side"
       env: PROJECT_PART=client
     - name: "Server Side"
-      env: PROJECT_PART=client
+      env: PROJECT_PART=server
 addons:
   apt:
     sources:
