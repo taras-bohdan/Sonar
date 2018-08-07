@@ -8,6 +8,7 @@
     "lint-server": "cd server && yarn run lint",
     "test-client": "cd client && yarn coverage",
     "start": "cd server && yarn run dev",
-    "coveralls": "cd client && yarn run coveralls"
+    "coveralls-client": "cd client && yarn run coveralls",
+    "coveralls-server": "cd server && yarn run coveralls"
   }
 }
