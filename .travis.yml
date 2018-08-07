@@ -8,7 +8,7 @@ script:
 after_script:
 - "cat ./coverage/lcov.info | coveralls --verbose"
 notifications:
-  webhooks: https://coveralls.io/webhook?repo_token=$coveralls_repo_token
+  webhooks: https://coveralls.io/webhook?repo_token=COVERALLS_REPO_TOKEN
 env:
   global:
     - COVERALLS_PARALLEL=true
