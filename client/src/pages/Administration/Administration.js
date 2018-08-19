@@ -11,8 +11,13 @@ const styles = theme => ({
 
 /**
  * Administration page component
+ * @return {Component} - administration page component
  */
 class Administration extends Component {
+  /**
+   * Get all users on component mount
+   * @returns {void}
+   */
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(userActions.getAll());
@@ -37,6 +42,8 @@ Administration.propTypes = {
 
 /**
  * Map users state to component properties
+ * @param {object} state - component state
+ * @return {object} - component props
  */
 function mapStateToProps(state) {
   const { users } = state;

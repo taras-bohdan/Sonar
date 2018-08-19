@@ -23,13 +23,20 @@ const styles = theme => {
   };
 };
 
-
+/**
+ * Alert component
+ * @return {*} - alert component
+ */
 class Alert extends Component {
   handleClose = () => {
     const { dispatch } = this.props;
     dispatch(alertActions.clear());
   };
 
+  /**
+   * Render alert component
+   * @return {*} - component's HTML
+   */
   render() {
     const { classes, type, message } = this.props;
     return (
@@ -61,6 +68,11 @@ class Alert extends Component {
   }
 }
 
+/**
+ * Map state to component's properties
+ * @param {object} state - components state
+ * @returns {{type: string, message: string}} - alert type and message
+ */
 function mapStateToProps(state) {
   const { type = 'success', message = '' } = state.alert;
   return {

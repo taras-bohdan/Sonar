@@ -61,7 +61,9 @@ const styles = theme => ({
   },
 });
 
-
+/**
+ * Login component
+ */
 class Login extends Component {
   state = {
     hovering: false,
@@ -70,10 +72,19 @@ class Login extends Component {
     password: null,
   };
 
+  /**
+   * Set hovering state to scale logo
+   * @param {boolean} hovering - hovered state
+   * @return {void}
+   */
   scaleOnHover(hovering) {
     this.setState({ hovering });
   }
 
+  /**
+   * Get logo state
+   * @returns {string} - logo state
+   */
   get logoState() {
     if (this.state.showLoginForm) {
       return 'showLogin';
@@ -82,25 +93,52 @@ class Login extends Component {
     return this.state.hovering ? 'hovered' : 'idle';
   }
 
+  /**
+   * Dispatch login action
+   * @returns {void}
+   */
   login = () => {
     const { dispatch } = this.props;
     dispatch(userActions.login(this.state.username, this.state.password));
   };
 
+  /**
+   * Set hover state to true
+   * @returns {void}
+   */
   onMouseEnter = () => {
     this.scaleOnHover(true);
   };
 
+  /**
+   * Set hover state to false
+   * @returns {void}
+   */
   onMouseLeave = () => {
     this.scaleOnHover(false);
   };
 
-  onLogoClick = () => !this.state.showLoginForm && this.setState({ showLoginForm: true });
+  /**
+   * Show login form on click
+   * @returns {void}
+   */
+  onLogoClick = () => {
+    !this.state.showLoginForm && this.setState({ showLoginForm: true });
+  };
 
+  /**
+   * Create function to set field value into state on change
+   * @param {string} fieldName - name of field (login/password)
+   * @returns {function(*): void} - update state funciton
+   */
   onTextFieldChange = (fieldName) => {
     return (event) => this.setState({ [fieldName]: event.target.value });
   };
 
+  /**
+   * Render component
+   * @returns {*} - component's HTML
+   */
   render() {
     const { classes, loggedIn, loggingIn } = this.props;
     const { from } = this.props.location.state || { from: { pathname: '/' } };
@@ -179,6 +217,8 @@ class Login extends Component {
 
 /**
  * Map state to component properties
+ * @param {object} state - component's state
+ * @return {object} - component properties
  */
 function mapStateToProps(state) {
   const { loggingIn, loggedIn } = state.authentication;

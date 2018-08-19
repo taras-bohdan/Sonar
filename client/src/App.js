@@ -55,6 +55,8 @@ class App extends Component {
 
 /**
  * Map state to component properties
+ * @param {object} state - app state
+ * @returns {object} - component props with state
  */
 function mapStateToProps(state) {
   const { alert } = state;

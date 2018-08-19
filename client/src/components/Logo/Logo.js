@@ -59,7 +59,14 @@ const styles = theme => {
   };
 };
 
+/**
+ * Logo component
+ */
 class Logo extends Component {
+  /**
+   * Render logo
+   * @returns {*} - logo html code
+   */
   render() {
     return (
       <div className={this.props.classes.logo}>
