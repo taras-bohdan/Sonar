@@ -27,7 +27,7 @@ const styles = theme => {
  * Alert component
  * @return {*} - alert component
  */
-class Alert extends Component {
+export class Alert extends Component {
   handleClose = () => {
     const { dispatch } = this.props;
     dispatch(alertActions.clear());

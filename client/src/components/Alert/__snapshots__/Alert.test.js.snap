@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Alert/> Render successfully 1`] = `
+<div
+  class="MuiSnackbar-root-1 MuiSnackbar-anchorOriginBottomLeft-7"
+>
+  <div
+    class="MuiTypography-root-38 MuiTypography-body1-47 MuiPaper-root-11 MuiPaper-elevation6-19 MuiSnackbarContent-root-8"
+    direction="up"
+    role="alertdialog"
+  >
+    <div
+      class="MuiSnackbarContent-message-9"
+    >
+      <span
+        id="message-id"
+      >
+        test message
+      </span>
+    </div>
+    <div
+      class="MuiSnackbarContent-action-10"
+    >
+      <button
+        aria-label="Close"
+        class="MuiButtonBase-root-68 MuiIconButton-root-62 MuiIconButton-colorInherit-63"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="MuiIconButton-label-67"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root-71"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              >
+                
+              </path>
+            </g>
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root-77"
+        >
+          
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

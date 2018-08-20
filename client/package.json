@@ -24,6 +24,9 @@
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "concurrently": "^3.5.1",
+    "enzyme": "^3.4.4",
+    "enzyme-adapter-react-16": "^1.2.0",
+    "enzyme-to-json": "^3.3.4",
     "eslint": "^4.1.1",
     "eslint-config-react-app": "^2.1.0",
     "eslint-plugin-flowtype": "^2.50.0",
@@ -45,5 +48,10 @@
       "logLevel": "debug",
       "secure": false
     }
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
