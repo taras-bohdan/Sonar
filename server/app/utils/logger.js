@@ -1,6 +1,8 @@
 import { existsSync, mkdirSync } from 'fs';
-import { createLogger, transports } from 'winston';
+import { createLogger, format, transports } from 'winston';
 import config from '../config/default';
+
+const { simple, combine, colorize } = format;
 
 require('winston-daily-rotate-file');
 
@@ -12,7 +14,7 @@ if (!existsSync(dir)) {
 
 const loggerTransports = [
   new (transports.Console)({
-    colorize: true,
+    format: combine(colorize(), simple()),
   }),
   new transports.DailyRotateFile({
     filename: config.logs.fileName,
