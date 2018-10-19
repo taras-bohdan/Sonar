@@ -1,8 +1,8 @@
-import { graphqlKoa } from 'apollo-server-koa';
-import { makeExecutableSchema } from 'graphql-tools';
+import { ApolloServer, gql } from 'apollo-server-koa';
+
 import UserLocation from '../models/user-location.model';
 
-const typeDefs = `
+const typeDefs = gql`
   scalar Date
 
   type DeviceUser {
@@ -69,12 +69,7 @@ const resolvers = {
 };
 
 
-export const schema = makeExecutableSchema({
+export const apollo = new ApolloServer({
   typeDefs,
   resolvers,
-});
-
-export default graphqlKoa({
-  schema: schema,
-  graphiql: true,
 });

@@ -1,3 +1,5 @@
+import '@babel/polyfill';
+
 import { join } from 'path';
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
@@ -9,9 +11,13 @@ import cors from '@koa/cors';
 import config from './config/default';
 import routers from './routers';
 import logger from './utils/logger';
+import { apollo } from './controllers/user-location.controller';
+
 require('dotenv').config();
 
 const app = new Koa();
+
+apollo.applyMiddleware({ app });
 
 app
   .use(async (ctx, next) => {

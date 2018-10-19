@@ -12,6 +12,9 @@
 # env
 server/.env
 
+#logs
+server/logs/
+
 # misc
 .DS_Store
 .env.local

@@ -1,6 +1,11 @@
 import jwt from 'jsonwebtoken';
 import * as User from 'mongoose/lib/model';
 
+/**
+ * Generate user token
+ * @param {object} user - user info
+ * @return {*} - token
+ */
 export function generateToken(user) {
   const u = {
     username: user.username,
