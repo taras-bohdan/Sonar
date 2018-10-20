@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
  * Verify provided user token
  * @param {object} ctx - context
  * @param {function} next - next middleware or function to be called
- * @returns {Promise<*>}
+ * @returns {Promise<*>} - empty promise
  */
 export async function checkToken(ctx, next) {
   // check header or url parameters or post parameters for token

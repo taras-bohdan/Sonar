@@ -7,8 +7,8 @@ const { simple, combine, colorize } = format;
 require('winston-daily-rotate-file');
 
 
-const singleton = Symbol();
-const singletonEnforcer = Symbol();
+const singleton = Symbol('logger class member name');
+const singletonEnforcer = Symbol('constructor parameter');
 
 /**
  * Logger service
