@@ -1,17 +1,19 @@
 import { User } from '../models/user.model';
-import { generateToken } from '../utils/jwt';
+import { JWTService } from '../services/jwt.service';
 
 const invalidUserMsg = 'Username or Password is not valid';
 
 /**
  * Save user into DB
+ * @param {Object} newUser - user
+ * @returns {Object} user info and token
  */
 export async function saveUser(newUser) {
   // create a user a new user
   const user = new User(newUser);
   await user.save();
 
-  const token = generateToken(user);
+  const token = JWTService.generateToken(user);
   return {
     user: user,
     token: token,
@@ -21,6 +23,8 @@ export async function saveUser(newUser) {
 /**
  * Verify user for login
  * test: curl --http2 --insecure "https://localhost:5500/login?userName=xdr&password=123qweasd"
+ * @param {Context} ctx - koa context
+ * @returns {Object} user id and token
  */
 export async function verifyUser(ctx) {
   const { username, password } = ctx.request.body;
@@ -37,7 +41,7 @@ export async function verifyUser(ctx) {
   if (!isMatch) {
     throw new Error(invalidUserMsg);
   }
-  const token = generateToken(user);
+  const token = JWTService.generateToken(user);
   return {
     userId: user._id,
     token: token,
