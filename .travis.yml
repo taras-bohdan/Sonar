@@ -6,8 +6,6 @@ install:
 - npm install -g codecov
 script:
 - yarn run lint && yarn run coverage
-install:
-- yarn
 after_script:
 - "codecov"
 env:
