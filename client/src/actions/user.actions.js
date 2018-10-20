@@ -73,7 +73,7 @@ function logout() {
 
 /**
  * Get all users
- * @returns {Function}
+ * @returns {Function} - get all action function
  */
 function getAll() {
   return dispatch => {
@@ -89,14 +89,29 @@ function getAll() {
       );
   };
 
+
+  /**
+   * Create request action
+   * @returns {{type: string}} - request processing action
+   */
   function request() {
     return { type: userConstants.GETALL_REQUEST };
   }
 
+  /**
+   * Create success action
+   * @param {object[]} users - users list
+   * @returns {{type: string, users: *}} - request success action
+   */
   function success(users) {
     return { type: userConstants.GETALL_SUCCESS, users };
   }
 
+  /**
+   * Create failure action
+   * @param {object} error - error description
+   * @returns {{type: string, error: *}} - request fail action
+   */
   function failure(error) {
     return { type: userConstants.GETALL_FAILURE, error };
   }

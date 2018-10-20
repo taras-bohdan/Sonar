@@ -1,5 +1,11 @@
 import { alertConstants, alertTypes } from '../constants';
 
+/**
+ * Alert reducer
+ * @param {object} state - alert state
+ * @param {object} action - alert action
+ * @return {*} - new state
+ */
 export function alert(state = {}, action) {
   switch (action.type) {
     case alertConstants.SUCCESS:

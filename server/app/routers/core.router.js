@@ -1,6 +1,5 @@
 import Router from 'koa-router';
 
-// import { generateData } from '../../data-mocks/data-mocks.json';
 import UserLocation from '../models/user-location.model';
 import { checkToken } from '../middleware/checkToken.middleware';
 

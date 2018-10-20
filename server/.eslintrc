@@ -1,13 +1,22 @@
 {
   "env": {
     "node": true,
+    "es6": true,
     "jest": true
   },
   "extends": [
     "eslint:recommended"
   ],
   "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
   "rules": {
+    "symbol-description": "warn",
     "require-jsdoc": [
       "warn",
       {
@@ -22,6 +31,7 @@
     ],
     "valid-jsdoc": "warn",
     "plugins": [
+      "babel",
       "import",
       "jest"
     ]

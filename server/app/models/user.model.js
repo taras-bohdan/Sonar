@@ -1,7 +1,9 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
-import logger from '../utils/logger';
+import loggerService from '../services/logger.service';
+
+const { Schema } = mongoose;
 
 const UserSchema = new Schema({
   email: {
@@ -38,6 +40,11 @@ UserSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
+/**
+ * Hash password before saving on change
+ * @param {function} next - next function to call
+ * @returns {Promise<void>} nothing
+ */
 async function hashPasswordOnChange(next) {
   const saltWorkFactor = 10;
   const user = this;
@@ -52,9 +59,8 @@ async function hashPasswordOnChange(next) {
     user.password = await bcrypt.hash(user.password, salt);
     next();
   } catch (err) {
-    logger.error(err);
+    loggerService.error(err);
   }
-
 }
 
 export const User = mongoose.model('User', UserSchema);

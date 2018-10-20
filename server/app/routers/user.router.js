@@ -1,6 +1,6 @@
 import Router from 'koa-router';
 import { getAllUsers, saveUser, verifyUser } from '../controllers/user.controller';
-import { verifyUserToken } from '../utils/jwt';
+import { JWTService } from '../services/jwt.service';
 import { checkToken } from '../middleware/checkToken.middleware';
 
 
@@ -31,7 +31,7 @@ router.get('/user/token', (ctx) => {
   }
 
 
-  ctx.body = verifyUserToken(token);
+  ctx.body = JWTService.verifyUserToken(token);
 });
 
 export default [router.routes(), router.allowedMethods()];

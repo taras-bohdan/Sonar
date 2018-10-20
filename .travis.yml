@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - '10'
 install:
-- cd $PROJECT_PART && npm install
+- cd $PROJECT_PART && yarn
 - npm install -g codecov
 script:
 - yarn run lint && yarn run coverage
