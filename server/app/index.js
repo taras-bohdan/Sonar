@@ -1,5 +1,3 @@
-import '@babel/polyfill';
-
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import mongoose from 'mongoose';

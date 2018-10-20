@@ -2,6 +2,9 @@
   "name": "sonar-server",
   "version": "1.0.0",
   "license": "MIT",
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "repository": "https://github.com/taras-bohdan/Sonar",
   "scripts": {
     "client": "cd ../client && yarn start",
@@ -34,6 +37,7 @@
     "@babel/core": "^7.1.2",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "@babel/preset-stage-0": "^7.0.0",
     "@babel/register": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
@@ -52,6 +56,7 @@
     "presets": [
       [
         "@babel/preset-env",
+        "@babel/preset-stage-0",
         {
           "useBuiltIns": "entry"
         }
