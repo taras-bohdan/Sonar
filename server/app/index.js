@@ -5,30 +5,54 @@ import { join } from 'path';
 import https from 'https';
 import fs from 'fs';
 import cors from '@koa/cors';
+import session from 'koa-session';
 
 import config from './config/default';
 import routers from './routers';
 import loggerService from './services/logger.service';
-import { apollo } from './controllers/user-location.controller';
+import { logRequestInfo } from './middleware/log-request.middleware';
+import { AuthenticationService } from './services/authentication.service';
+
 
 require('dotenv').config();
 
+/**
+ *
+ * @type {module.Application|*|Application}
+ */
 const app = new Koa();
 
-apollo.applyMiddleware({ app });
+// session
+app.keys = ['some secret key'];
+const CONFIG = {
+  key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
+  /** (number || 'session') maxAge in ms (default is 1 days) */
+  /** 'session' will result in a cookie that expires when session/browser is closed */
+  /** Warning: If a session cookie is stolen, this cookie will never expire */
+  maxAge: 86400000,
+  autoCommit: true,
+  /** (boolean) automatically commit headers (default true) */
+  overwrite: true,
+  /** (boolean) can overwrite or not (default true) */
+  httpOnly: true,
+  /** (boolean) httpOnly or not (default true) */
+  signed: true,
+  /** (boolean) signed or not (default true) */
+  rolling: false,
+  /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
+  renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
+};
+app.use(session(CONFIG, app));
+
+// authentication
+AuthenticationService.initPassport(app);
+
+
+// apollo middleware
+// apollo.applyMiddleware({ app });
 
 app
-  .use(async (ctx, next) => {
-    try {
-      // Log the request to the console
-      loggerService.info('Url:', ctx.url);
-      // Pass the request to the next middleware function
-      await next();
-    } catch (e) {
-      ctx.status = e.statusCode || 500;
-      ctx.body = e.message;
-    }
-  })
+  .use(logRequestInfo)
   .use(cors())
   .use(bodyParser())
   .use(routers);

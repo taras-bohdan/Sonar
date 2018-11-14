@@ -3,6 +3,8 @@ import { getAllUsers, saveUser, verifyUser } from '../controllers/user.controlle
 import { JWTService } from '../services/jwt.service';
 import { checkToken } from '../middleware/checkToken.middleware';
 
+const passport = require('koa-passport');
+
 
 const router = new Router();
 
@@ -14,7 +16,7 @@ router.post('/user/signUp', async (ctx) => {
   ctx.body = await saveUser(ctx.request.body);
 });
 
-router.post('/user/signIn', async (ctx) => {
+router.post('/user/signIn', passport.authenticate('local'), async (ctx) => {
   ctx.body = await verifyUser(ctx);
 });
 

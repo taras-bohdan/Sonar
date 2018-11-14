@@ -27,8 +27,11 @@
     "koa": "^2.5.3",
     "koa-bodyparser": "^4.2.1",
     "koa-compose": "^4.1.0",
+    "koa-passport": "^4.1.1",
     "koa-router": "^7.4.0",
+    "koa-session": "^5.10.0",
     "mongoose": "^5.3.4",
+    "passport-local": "^1.0.0",
     "pcap-parser": "^0.2.1",
     "winston": "^3.1.0",
     "winston-daily-rotate-file": "^3.3.3"
