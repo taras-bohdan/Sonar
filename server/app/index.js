@@ -6,6 +6,7 @@ import https from 'https';
 import fs from 'fs';
 import cors from '@koa/cors';
 import session from 'koa-session';
+import RedisStore from 'koa-redis';
 
 import config from './config/default';
 import routers from './routers';
@@ -13,8 +14,8 @@ import loggerService from './services/logger.service';
 import { logRequestInfo } from './middleware/log-request.middleware';
 import { AuthenticationService } from './services/authentication.service';
 
-
 require('dotenv').config();
+
 
 /**
  *
@@ -25,6 +26,8 @@ const app = new Koa();
 // session
 app.keys = ['some secret key'];
 const CONFIG = {
+  /* use redis store */
+  store: new RedisStore(),
   key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
   /** (number || 'session') maxAge in ms (default is 1 days) */
   /** 'session' will result in a cookie that expires when session/browser is closed */
@@ -60,7 +63,6 @@ app
 mongoose.connect(`${config.db.url}/${config.db.name}`, { useNewUrlParser: true }).then(() => {
   loggerService.info('Connected to mongo db successfully');
 });
-
 
 /*
  // TODO uncomment when apollo http2 fixed

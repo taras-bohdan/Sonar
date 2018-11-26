@@ -21,17 +21,17 @@ export class AuthenticationService {
   static initPassport(app) {
     loggerService.info('init passport');
 
-    passport.serializeUser(async (user, done) => {
+    passport.serializeUser((user, done) => {
       done(null, user.id);
     });
 
-    passport.deserializeUser(async (id, done) => {
-      try {
-        const user = await User.findOne({ id });
-        done(null, user);
-      } catch (err) {
-        done(err, null);
-      }
+    passport.deserializeUser((_id, done) => {
+      return User.findOne({ _id })
+        .then(user => {
+          done(null, user);
+        }).catch(err => {
+          done(err, null);
+        });
     });
 
     const options = {};
