@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync } from 'fs';
 import { createLogger, format, transports } from 'winston';
-import config from '../config/default';
+import {config} from '../config/default';
 
 const { simple, combine, colorize } = format;
 

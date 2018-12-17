@@ -207,6 +207,11 @@ class Login extends Component {
               className={classes.button}
               onClick={this.login}
             >Login</Button>
+            <Button
+              color="primary"
+              className={classes.button}
+              href="auth/google"
+            >Login with google</Button>
             {loggingIn && <LinearProgress/>}
           </div>
         </LoginForm>

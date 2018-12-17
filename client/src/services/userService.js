@@ -13,7 +13,7 @@ export const userService = {
  * @returns {*} - user id and token
  */
 function login(username, password) {
-  return httpService.post('/user/signIn', {
+  return httpService.post('/auth/basic/login', {
     username,
     password,
   }).then(({ data }) => {

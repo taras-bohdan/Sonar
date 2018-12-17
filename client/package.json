@@ -48,6 +48,11 @@
       "target": "https://localhost:5500",
       "logLevel": "debug",
       "secure": false
+    },
+    "/auth/*": {
+      "target": "https://localhost:5500",
+      "logLevel": "debug",
+      "secure": false
     }
   },
   "jest": {

@@ -9,26 +9,22 @@ import { JWTService } from '../services/jwt.service';
 export async function saveUser(newUser) {
   // create a user a new user
   const user = new User(newUser);
+
+  // generate refresh token
+  const refreshToken = JWTService.generateRefreshToken();
+
+  // set users refresh token
+  user.refreshToken = refreshToken;
+
+  // save user into DB
   await user.save();
 
   const token = JWTService.generateToken(user);
-  return {
-    user: user,
-    token: token,
-  };
-}
 
-/**
- * Verify user for login
- * test: curl --http2 --insecure "https://localhost:5500/login?userName=xdr&password=123qweasd"
- * @param {model} user - user model
- * @returns {Object} user id and token
- */
-export async function getUserInfo(user) {
-  const token = JWTService.generateToken(user);
   return {
-    userId: user._id,
-    token: token,
+    user,
+    token,
+    refreshToken,
   };
 }
 

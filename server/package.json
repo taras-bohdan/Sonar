@@ -7,7 +7,7 @@
   },
   "repository": "https://github.com/taras-bohdan/Sonar",
   "scripts": {
-    "client": "cd ../client && yarn start",
+    "client": "cd ../client && npm start",
     "server": "nodemon",
     "start": "nodemon",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
@@ -32,8 +32,10 @@
     "koa-router": "^7.4.0",
     "koa-session": "^5.10.0",
     "mongoose": "^5.3.4",
+    "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "pcap-parser": "^0.2.1",
+    "random-token": "0.0.8",
     "winston": "^3.1.0",
     "winston-daily-rotate-file": "^3.3.3"
   },

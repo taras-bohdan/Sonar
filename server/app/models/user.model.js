@@ -6,32 +6,13 @@ import loggerService from '../services/logger.service';
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-    trim: true,
-  },
-  username: {
-    type: String,
-    unique: true,
-    required: true,
-    trim: true,
-  },
-  firstName: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
+  email: String,
+  username: String,
+  firstName: String,
+  lastName: String,
+  password: String,
+  googleId: Number,
+  refreshToken: String,
 });
 
 UserSchema.pre('save', hashPasswordOnChange);
@@ -39,6 +20,7 @@ UserSchema.pre('save', hashPasswordOnChange);
 UserSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
+
 
 /**
  * Hash password before saving on change
