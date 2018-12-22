@@ -8,8 +8,6 @@ const router = new Router({
 
 router.get('/', googleAuthService.authenticate());
 
-router.get('/callback', googleAuthService.callback(), ctx => {
-  ctx.redirect('/');
-});
+router.get('/callback', googleAuthService.callback());
 
 export default [router.routes(), router.allowedMethods()];

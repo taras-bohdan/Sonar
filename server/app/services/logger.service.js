@@ -75,4 +75,4 @@ class LoggerService {
   }
 }
 
-export default LoggerService.instance;
+export const logger = LoggerService.instance;

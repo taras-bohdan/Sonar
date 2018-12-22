@@ -1,4 +1,4 @@
-import loggerService from '../services/logger.service';
+import { logger } from '../services/logger.service';
 
 export async function logRequestInfo(ctx, next) {
   const start = new Date();
@@ -18,5 +18,5 @@ export async function logRequestInfo(ctx, next) {
   const responseLength = ctx.response.length || null;
 
   // Log the request to the console
-  loggerService.info(`${method} ${url} ${status} ${ms} - ${responseLength}`);
+  logger.info(`${method} ${url} ${status} ${ms} - ${responseLength}`);
 }

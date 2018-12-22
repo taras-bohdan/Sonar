@@ -10,7 +10,7 @@ import RedisStore from 'koa-redis';
 
 import { config } from './config/default';
 import routers from './routers';
-import loggerService from './services/logger.service';
+import { logger } from './services/logger.service';
 import { logRequestInfo } from './middleware/log-request.middleware';
 import { PassportService } from './services/passport.service';
 import { authRouter } from './routers/auth';
@@ -41,7 +41,6 @@ app.use(session(CONFIG, app));
 // authentication
 PassportService.initPassport(app);
 
-
 // apollo middleware
 // apollo.applyMiddleware({ app });
 
@@ -54,7 +53,7 @@ app
 
 
 mongoose.connect(`${config.db.url}/${config.db.name}`, { useNewUrlParser: true }).then(() => {
-  loggerService.info('Connected to mongo db successfully');
+  logger.info('Connected to mongo db successfully');
 });
 
 /*
@@ -75,4 +74,4 @@ const server = https.createServer({
 }, app.callback());
 
 server.listen(config.port);
-loggerService.info(`Listening on port: ${config.port}`);
+logger.info(`Listening on port: ${config.port}`);

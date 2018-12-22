@@ -1,6 +1,7 @@
 import { User } from '../models/user.model';
 import { GoogleAuthService } from './auth/google-auth.service';
 import { LocalAuthService } from './auth/local-auth.service';
+import {logger} from './logger.service';
 
 const passport = require('koa-passport');
 
@@ -16,10 +17,12 @@ export class PassportService {
    */
   static initPassport(app) {
     passport.serializeUser((user, done) => {
+      logger.debug('serialized user:' + user.id);
       done(null, user.id);
     });
 
     passport.deserializeUser((id, done) => {
+      logger.debug('deserialize user');
       return User.findById(id)
         .then(user => {
           done(null, user);

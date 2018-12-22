@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
-import loggerService from '../services/logger.service';
+import {logger} from '../services/logger.service';
 
 const { Schema } = mongoose;
 
@@ -41,7 +41,7 @@ async function hashPasswordOnChange(next) {
     user.password = await bcrypt.hash(user.password, salt);
     next();
   } catch (err) {
-    loggerService.error(err);
+    logger.error(err);
   }
 }
 

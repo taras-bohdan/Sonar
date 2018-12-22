@@ -5,16 +5,23 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const invalidUserMsg = 'Username or Password is not valid';
 
+/**
+ * Local authentication service
+ * Authenticates user by login/password
+ */
 export class LocalAuthService extends GenericAuthService {
   /**
-   * Creates google auth service instance
+   * Creates local auth service instance
    */
   constructor() {
-    super('local', {
-      failureFlash: true
-    });
+    super('local', {});
   }
 
+  /**
+   * Create local strategy
+   * @param {Object} options - strategy options
+   * @return {Strategy} - local strategy object
+   */
   static createStrategy(options = {}) {
     return new LocalStrategy(options, async (username, password, done) => {
       try {

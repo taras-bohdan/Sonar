@@ -13,5 +13,4 @@ router.post('/user/logout', async ctx => {
   ctx.redirect('/login');
 });
 
-
 export const authRouter = compose([router.routes(), router.allowedMethods(), ...basicRouter, ...googleRouter]);

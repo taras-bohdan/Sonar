@@ -61,11 +61,13 @@
   "babel": {
     "presets": [
       [
-        "@babel/preset-env",
+        "@babel/env",
         {
           "useBuiltIns": "entry"
         }
       ]
-    ]
+    ],
+    "sourceMaps": "inline",
+    "retainLines": true
   }
 }
