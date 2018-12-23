@@ -28,6 +28,6 @@ export class GenericAuthService {
    * @return {passport} - passport authentication function
    */
   callback() {
-    return passport.authenticate(this.strategy, { successRedirect: '/', failureRedirect: '/login' });
+    return passport.authenticate(this.strategy, { failureRedirect: '/login' });
   }
 }
