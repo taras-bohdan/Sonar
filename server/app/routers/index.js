@@ -1,5 +1,5 @@
 import compose from 'koa-compose';
 import coreRouter from './core.router';
-import userRouter from './user.router';
+import { v1 } from './api/v1';
 
-export default compose([...coreRouter, ...userRouter]);
+export default compose([...coreRouter, ...v1]);
