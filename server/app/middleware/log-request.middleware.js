@@ -1,5 +1,11 @@
 import { logger } from '../services/logger.service';
 
+/**
+ * Log request information
+ * @param {Context} ctx - koa context
+ * @param {function} next - next function
+ * @return {Promise<void>} - promise
+ */
 export async function logRequestInfo(ctx, next) {
   const start = new Date();
 
