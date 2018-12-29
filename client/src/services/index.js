@@ -1,2 +1,2 @@
 export * from './userService';
-export * from './httpService';
+export * from './http.service';

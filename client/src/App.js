@@ -9,14 +9,13 @@ import Administration from './pages/Administration/Administration';
 import { PageNotFound } from './pages/PageNotFound/PageNotFound';
 import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
 import Alert from './components/Alert/Alert';
+import { Callback } from './components/Callback';
 
 
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      // light: '#757ce8',
       main: '#03DAC6',
-      // dark: '#002884',
       contrastText: '#fff',
     },
     secondary: {
@@ -44,6 +43,7 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <Switch>
           <PrivateRoute exact path='/' component={Administration}/>
+          <Route path='/callback' component={Callback}/>
           <Route exact path='/login' render={(props) => <Login {...props}/>}/>
           <Route component={PageNotFound}/>
         </Switch>

@@ -9,7 +9,7 @@ const router = new Router({
 router.get('/', googleAuthService.authenticate());
 
 router.get('/callback', googleAuthService.callback(), ctx => {
-  ctx.redirect(`/?token=${ctx.state.user.refreshToken}`);
+  ctx.redirect(`/callback?refreshToken=${ctx.state.user.refreshToken}`);
 });
 
 export default [router.routes(), router.allowedMethods()];
