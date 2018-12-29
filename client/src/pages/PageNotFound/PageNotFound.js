@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { object } from 'prop-types';
 
 /**
  * Page not found component
@@ -9,7 +10,7 @@ export class PageNotFound extends Component {
    * @param {object} location - previous location
    */
   constructor({ location }) {
-    super();
+    super({ location });
     this.state = { path: location.pathname };
   }
 
@@ -25,3 +26,7 @@ export class PageNotFound extends Component {
     );
   }
 }
+
+PageNotFound.propTypes = {
+  location: object,
+};
