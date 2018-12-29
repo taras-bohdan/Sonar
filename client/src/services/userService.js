@@ -41,5 +41,5 @@ function logout() {
  * @returns {*} - promise
  */
 function getAll() {
-  return httpService.get('/api/v1/user/getAll');
+  return httpService.get('/user/getAll');
 }

@@ -21,6 +21,7 @@ class HttpService {
 
     this.axios = axios.create();
 
+    this.setBaseUrl('/api/v1');
     this.setAuthHeader();
     this.createResponseInterceptor();
 
@@ -37,6 +38,15 @@ class HttpService {
     }
 
     return this[singleton];
+  }
+
+  /**
+   * Set base url
+   * @param {string} url - url
+   * @return {void}
+   */
+  setBaseUrl(url) {
+    this.axios.defaults.baseURL = url;
   }
 
   /**
