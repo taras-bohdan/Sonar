@@ -1,8 +1,6 @@
 import Router from 'koa-router';
-import { getAllUsers, saveUser, verifyUser } from '../controllers/user.controller';
-import { JWTService } from '../services/jwt.service';
-import { checkToken } from '../middleware/checkToken.middleware';
-
+import { getAllUsers, saveUser } from '../controllers/user.controller';
+import passport from 'koa-passport';
 
 const router = new Router();
 
@@ -14,24 +12,11 @@ router.post('/user/signUp', async (ctx) => {
   ctx.body = await saveUser(ctx.request.body);
 });
 
-router.post('/user/signIn', async (ctx) => {
-  ctx.body = await verifyUser(ctx);
-});
-
-router.get('/user/getAll', checkToken, async ctx => {
+/**
+ * Get all users
+ */
+router.get('/user/getAll', passport.authenticate('local'), async ctx => {
   ctx.body = await getAllUsers();
-});
-
-//get current user from token
-router.get('/user/token', (ctx) => {
-  // check header or url parameters or post parameters for token
-  const token = ctx.request.body.token || ctx.query.token;
-  if (!token) {
-    return ctx.throw(401, 'Must pass token');
-  }
-
-
-  ctx.body = JWTService.verifyUserToken(token);
 });
 
 export default [router.routes(), router.allowedMethods()];

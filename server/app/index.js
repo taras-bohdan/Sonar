@@ -5,38 +5,56 @@ import { join } from 'path';
 import https from 'https';
 import fs from 'fs';
 import cors from '@koa/cors';
+import session from 'koa-session';
+import RedisStore from 'koa-redis';
 
-import config from './config/default';
+import { config } from './config/default';
 import routers from './routers';
-import loggerService from './services/logger.service';
-import { apollo } from './controllers/user-location.controller';
+import { logger } from './services/logger.service';
+import { logRequestInfo } from './middleware/log-request.middleware';
+import { PassportService } from './services/passport.service';
+import { authRouter } from './routers/auth';
 
-require('dotenv').config();
 
+/**
+ *
+ * @type {module.Application|*|Application}
+ */
 const app = new Koa();
 
-apollo.applyMiddleware({ app });
+// session
+app.keys = config.appKeys;
+const CONFIG = {
+  /* use redis store */
+  store: new RedisStore(),
+  key: config.cookie.key,
+  maxAge: config.cookie.maxAge,
+  autoCommit: config.cookie.autoCommit,
+  overwrite: config.cookie.overwrite,
+  httpOnly: config.cookie.httpOnly,
+  signed: config.cookie.signed,
+  rolling: config.cookie.rolling,
+  renew: config.cookie.renew,
+};
+app.use(session(CONFIG, app));
+
+// authentication
+PassportService.initPassport(app);
+
+// apollo middleware
+// apollo.applyMiddleware({ app });
 
 app
-  .use(async (ctx, next) => {
-    try {
-      // Log the request to the console
-      loggerService.info('Url:', ctx.url);
-      // Pass the request to the next middleware function
-      await next();
-    } catch (e) {
-      ctx.status = e.statusCode || 500;
-      ctx.body = e.message;
-    }
-  })
+  .use(logRequestInfo)
   .use(cors())
   .use(bodyParser())
+  .use(authRouter)
   .use(routers);
 
-mongoose.connect(`${config.db.url}/${config.db.name}`, { useNewUrlParser: true }).then(() => {
-  loggerService.info('Connected to mongo db successfully');
-});
 
+mongoose.connect(`${config.db.url}/${config.db.name}`, { useNewUrlParser: true }).then(() => {
+  logger.info('Connected to mongo db successfully');
+});
 
 /*
  // TODO uncomment when apollo http2 fixed
@@ -56,4 +74,4 @@ const server = https.createServer({
 }, app.callback());
 
 server.listen(config.port);
-loggerService.info(`Listening on port: ${config.port}`);
+logger.info(`Listening on port: ${config.port}`);

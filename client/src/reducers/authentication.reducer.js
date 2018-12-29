@@ -1,7 +1,11 @@
-import { userConstants } from '../constants';
+import { authConstants } from '../constants';
+import { TokenService } from '../services/token.service';
 
-let userId = localStorage.getItem('userId');
-const initialState = userId ? { loggedIn: true, userId } : { loggedIn: false };
+/**
+ * Authentication initial state
+ * @type {{loggedIn: boolean}}
+ */
+const initialState = { loggedIn: !!TokenService.refreshToken };
 
 /**
  * Authentication reducer
@@ -11,19 +15,13 @@ const initialState = userId ? { loggedIn: true, userId } : { loggedIn: false };
  */
 export function authentication(state = initialState, action) {
   switch (action.type) {
-    case userConstants.LOGIN_REQUEST:
-      return {
-        loggingIn: true,
-        user: action.user,
-      };
-    case userConstants.LOGIN_SUCCESS:
+    case authConstants.LOGIN_SUCCESS:
       return {
         loggedIn: true,
-        user: action.user,
       };
-    case userConstants.LOGIN_FAILURE:
+    case authConstants.LOGIN_FAILURE:
       return {};
-    case userConstants.LOGOUT:
+    case authConstants.LOGOUT:
       return {};
     default:
       return state;

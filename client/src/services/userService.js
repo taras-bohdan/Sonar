@@ -1,4 +1,5 @@
-import { httpService } from './httpService';
+import { httpService } from './http.service';
+import { tokenType } from '../constants/auth.constants';
 
 export const userService = {
   login,
@@ -13,13 +14,13 @@ export const userService = {
  * @returns {*} - user id and token
  */
 function login(username, password) {
-  return httpService.post('/user/signIn', {
+  return httpService.post('/auth/basic/login', {
     username,
     password,
   }).then(({ data }) => {
     const { token, userId } = data;
 
-    localStorage.setItem('userToken', token);
+    localStorage.setItem(tokenType.ACCESS, token);
     localStorage.setItem('userId', userId);
 
     return data;
@@ -31,7 +32,7 @@ function login(username, password) {
  * @returns {undefined}
  */
 function logout() {
-  localStorage.removeItem('userToken');
+  localStorage.removeItem(tokenType.ACCESS);
   localStorage.removeItem('userId');
 }
 

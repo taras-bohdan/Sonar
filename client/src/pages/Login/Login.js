@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import posed from 'react-pose';
 import { Redirect } from 'react-router-dom';
-import { object, bool, func } from 'prop-types';
+import { bool, func, object } from 'prop-types';
 import { connect } from 'react-redux';
 
 import withStyles from '@material-ui/core/styles/withStyles';
-import TextField from '@material-ui/core/TextField';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import Button from '@material-ui/core/Button';
 
-import { userActions } from '../../actions';
 import Logo from '../../components/Logo/Logo';
 
 
@@ -44,6 +41,9 @@ const styles = theme => ({
   },
   loginForm: {
     width: '15em',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
   },
   textField: {
     display: 'flex',
@@ -53,11 +53,6 @@ const styles = theme => ({
   },
   inputLabel: {
     color: theme.palette.primary.main,
-  },
-  buttonContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
   },
 });
 
@@ -94,15 +89,6 @@ class Login extends Component {
   }
 
   /**
-   * Dispatch login action
-   * @returns {void}
-   */
-  login = () => {
-    const { dispatch } = this.props;
-    dispatch(userActions.login(this.state.username, this.state.password));
-  };
-
-  /**
    * Set hover state to true
    * @returns {void}
    */
@@ -127,20 +113,11 @@ class Login extends Component {
   };
 
   /**
-   * Create function to set field value into state on change
-   * @param {string} fieldName - name of field (login/password)
-   * @returns {function(*): void} - update state funciton
-   */
-  onTextFieldChange = (fieldName) => {
-    return (event) => this.setState({ [fieldName]: event.target.value });
-  };
-
-  /**
    * Render component
    * @returns {*} - component's HTML
    */
   render() {
-    const { classes, loggedIn, loggingIn } = this.props;
+    const { classes, loggedIn } = this.props;
     const { from } = this.props.location.state || { from: { pathname: '/' } };
 
     if (loggedIn) {
@@ -160,55 +137,11 @@ class Login extends Component {
         <LoginForm className={classes.loginForm}
                    pose={this.state.showLoginForm ? 'visible' : 'hidden'}
         >
-          <TextField
-            required
-            id="username"
-            label="Username"
-            className={classes.textField}
-            margin="normal"
-            fullWidth
-            InputLabelProps={{
-              classes: {
-                root: classes.inputLabel,
-              },
-            }}
-            InputProps={{
-              classes: {
-                root: classes.inputLabel,
-                input: classes.inputLabel,
-              },
-            }}
-            onChange={this.onTextFieldChange('username')}
-          />
-          <TextField
-            id="password-input"
-            label="Password"
-            className={classes.textField}
-            type="password"
-            autoComplete="current-password"
-            margin="normal"
-            fullWidth
-            InputLabelProps={{
-              classes: {
-                root: classes.inputLabel,
-              },
-            }}
-            InputProps={{
-              classes: {
-                root: classes.inputLabel,
-                input: classes.inputLabel,
-              },
-            }}
-            onChange={this.onTextFieldChange('password')}
-          />
-          <div className={classes.buttonContainer}>
-            <Button
-              color="primary"
-              className={classes.button}
-              onClick={this.login}
-            >Login</Button>
-            {loggingIn && <LinearProgress/>}
-          </div>
+          <Button
+            color="primary"
+            className={classes.button}
+            href="auth/google"
+          >Login with google</Button>
         </LoginForm>
       </div>
     );
