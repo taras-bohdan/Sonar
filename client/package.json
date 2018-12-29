@@ -35,6 +35,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.12.0",
+    "http-proxy-middleware": "^0.19.1",
     "react-test-renderer": "^16.7.0"
   },
   "scripts": {
@@ -44,7 +45,6 @@
     "coverage": "react-scripts test --env=jsdom --coverage",
     "lint": "eslint --ext=js --ext=jsx ./src"
   },
-  "proxy": "https://localhost:5500",
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
