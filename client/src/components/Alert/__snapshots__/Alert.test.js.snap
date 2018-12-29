@@ -23,16 +23,16 @@ exports[`<Alert/> Render successfully 1`] = `
     >
       <button
         aria-label="Close"
-        class="MuiButtonBase-root-68 MuiIconButton-root-62 MuiIconButton-colorInherit-63"
+        class="MuiButtonBase-root-69 MuiIconButton-root-63 MuiIconButton-colorInherit-64"
         tabindex="0"
         type="button"
       >
         <span
-          class="MuiIconButton-label-67"
+          class="MuiIconButton-label-68"
         >
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root-71"
+            class="MuiSvgIcon-root-72"
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -46,7 +46,7 @@ exports[`<Alert/> Render successfully 1`] = `
           </svg>
         </span>
         <span
-          class="MuiTouchRipple-root-77"
+          class="MuiTouchRipple-root-79"
         >
           
         </span>
