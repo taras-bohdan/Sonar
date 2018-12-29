@@ -6,7 +6,6 @@ exports[`<Alert/> Render successfully 1`] = `
 >
   <div
     class="MuiTypography-root-38 MuiTypography-body1-47 MuiPaper-root-11 MuiPaper-elevation6-19 MuiSnackbarContent-root-8"
-    direction="up"
     role="alertdialog"
   >
     <div
@@ -23,32 +22,28 @@ exports[`<Alert/> Render successfully 1`] = `
     >
       <button
         aria-label="Close"
-        class="MuiButtonBase-root-69 MuiIconButton-root-63 MuiIconButton-colorInherit-64"
+        class="MuiButtonBase-root-79 MuiIconButton-root-73 MuiIconButton-colorInherit-74"
         tabindex="0"
         type="button"
       >
         <span
-          class="MuiIconButton-label-68"
+          class="MuiIconButton-label-78"
         >
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root-72"
+            class="MuiSvgIcon-root-82"
             focusable="false"
+            role="presentation"
             viewBox="0 0 24 24"
           >
-            <g>
-              <path
-                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-              >
-                
-              </path>
-            </g>
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
           </svg>
-        </span>
-        <span
-          class="MuiTouchRipple-root-79"
-        >
-          
         </span>
       </button>
     </div>
