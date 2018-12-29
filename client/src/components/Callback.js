@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
-import connect from 'react-redux/es/connect/connect';
+import { connect } from 'react-redux';
 
 import { func, object } from 'prop-types';
 import { loginSuccess } from '../actions/auth.actions';
