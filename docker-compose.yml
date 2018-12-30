@@ -1,0 +1,36 @@
+version: '3'
+services:
+  frontend:
+    container_name: "frontend"
+    build: ./client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/src:/usr/src/app/src
+    links:
+      - backend
+  backend:
+    container_name: "backend"
+    build: ./server
+    restart: always
+    ports:
+      - "5500:5500"
+    volumes:
+      - ./server/app:/usr/src/app/app
+    links:
+      - mongo
+      - redis
+  mongo:
+    container_name: "mongo"
+    image: mongo
+    volumes:
+      - /data/db/mongo
+    ports:
+      - "27017:27017"
+  redis:
+    container_name: "redis"
+    image: redis
+    volumes:
+      - /data/db/redis
+    ports:
+      - "6379:6379"

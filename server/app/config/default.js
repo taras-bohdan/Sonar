@@ -2,7 +2,7 @@ require('dotenv').config();
 
 export const config = {
   db: {
-    url: 'mongodb://localhost:27017',
+    url: 'mongodb://mongo:27017',
     name: 'sonar',
   },
   port: process.env.PORT || 5500,
