@@ -1,4 +1,4 @@
-FROM node
+FROM node:11
 
 ENV NPM_CONFIG_LOGLEVEL warn
 ARG app_env
@@ -8,9 +8,10 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 # Update apt repository
-RUN apt-get update
 # Install libpcap
-RUN apt-get install -y libpcap-dev
+RUN apt-get update \
+    && apt-get install -y libpcap-dev=1.8.1-3 --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN npm install
 
