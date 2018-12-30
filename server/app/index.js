@@ -26,7 +26,9 @@ const app = new Koa();
 app.keys = config.appKeys;
 const CONFIG = {
   /* use redis store */
-  store: new RedisStore(),
+  store: new RedisStore({
+    host: 'redis'
+  }),
   key: config.cookie.key,
   maxAge: config.cookie.maxAge,
   autoCommit: config.cookie.autoCommit,
@@ -50,7 +52,6 @@ app
   .use(bodyParser())
   .use(authRouter)
   .use(routers);
-
 
 mongoose.connect(`${config.db.url}/${config.db.name}`, { useNewUrlParser: true }).then(() => {
   logger.info('Connected to mongo db successfully');

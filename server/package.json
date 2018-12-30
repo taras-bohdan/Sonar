@@ -4,7 +4,7 @@
   "main": "./app/index.js",
   "license": "MIT",
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=11.0.0"
   },
   "repository": "https://github.com/taras-bohdan/Sonar",
   "scripts": {
@@ -55,7 +55,8 @@
     "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-import": "^2.14.0",
     "jest": "^23.6.0",
-    "regenerator-runtime": "^0.13.1"
+    "regenerator-runtime": "^0.13.1",
+    "nodemon": "^1.18.9"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge"
