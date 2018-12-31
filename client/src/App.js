@@ -10,6 +10,7 @@ import { PageNotFound } from './pages/PageNotFound/PageNotFound';
 import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
 import Alert from './components/Alert/Alert';
 import { Callback } from './components/Callback';
+import AppNavBar from './components/UI/AppNavBar';
 
 
 export const theme = createMuiTheme({
@@ -44,6 +45,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
+        <AppNavBar/>
         <Switch>
           <PrivateRoute exact path='/' component={Administration}/>
           <Route path='/callback' component={Callback}/>
