@@ -4,9 +4,15 @@ import { connect } from 'react-redux';
 import { object, func } from 'prop-types';
 
 import { userActions } from '../../actions';
+import UsersTable from '../../components/UsersTable';
+import Typography from '@material-ui/core/es/Typography';
 
 const styles = theme => ({
-  administration: {},
+  administration: {
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+    display: 'flex',
+  },
 });
 
 /**
@@ -30,7 +36,10 @@ class Administration extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.administration}>Administration</div>
+      <div className={classes.administration}>
+        <Typography variant="h6">Users</Typography>
+        <UsersTable/>
+      </div>
     );
   }
 }

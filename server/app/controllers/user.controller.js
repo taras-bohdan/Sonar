@@ -9,6 +9,7 @@ export async function getAllUsers() {
     email: 1,
     firstName: 1,
     lastName: 1,
+    username: 1,
     _id: 1,
   });
 }
