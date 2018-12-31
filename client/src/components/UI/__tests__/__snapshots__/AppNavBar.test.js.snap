@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppNavBar/> Renders successfully 1`] = `
+<div
+  class="Connect-AppNavBar--root-1"
+/>
+`;
