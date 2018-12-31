@@ -12,7 +12,7 @@
     "serve": "node ./dist/index.js",
     "client": "cd ../client && npm start",
     "server": "npm start",
-    "start": "nodemon --exec babel-node ./app/index.js",
+    "start": "nodemon --inspect=0.0.0.0 --exec babel-node ./app/index.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "test": "jest app",
     "coverage": "jest --collectCoverageFrom=app/**.js --coverage app",

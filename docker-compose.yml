@@ -1,7 +1,7 @@
 version: '3'
 services:
   frontend:
-    container_name: "frontend"
+    container_name: "sonar-frontend"
     build: ./client
     ports:
       - "3000:3000"
@@ -10,27 +10,26 @@ services:
     links:
       - backend
   backend:
-    container_name: "backend"
+    container_name: "sonar-backend"
     build: ./server
     restart: always
     ports:
       - "5500:5500"
+      - "9229:9229"
     volumes:
       - ./server/app:/usr/src/app/app
     links:
       - mongo
       - redis
   mongo:
-    container_name: "mongo"
+    container_name: "sonar-mongo"
     image: mongo
     volumes:
-      - /data/db/mongo
+      - ./data/db/mongo:/data/db
     ports:
       - "27017:27017"
   redis:
-    container_name: "redis"
+    container_name: "sonar-redis"
     image: redis
-    volumes:
-      - /data/db/redis
     ports:
       - "6379:6379"
