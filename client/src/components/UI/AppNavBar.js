@@ -8,9 +8,10 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { connect } from 'react-redux';
+import { toggleDrawer } from '../../actions/app.actions';
 
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1,
   },
@@ -21,7 +22,10 @@ const styles = {
   grow: {
     flexGrow: 1,
   },
-};
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
+});
 
 /**
  * Navigation bar
@@ -35,9 +39,14 @@ function AppNavBar(props) {
   return (
     <div className={classes.root}>
       {authentication.loggedIn && (
-        <AppBar position="static">
+        <AppBar position="fixed" className={classes.appBar}>
           <Toolbar variant="dense">
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <IconButton
+              onClick={props.toggleSidebar}
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+            >
               <MenuIcon/>
             </IconButton>
             <Typography className={classes.grow} variant="h6" color="inherit">
@@ -61,6 +70,7 @@ function AppNavBar(props) {
 AppNavBar.propTypes = {
   classes: PropTypes.object.isRequired,
   authentication: PropTypes.object.isRequired,
+  toggleSidebar: PropTypes.func.isRequired,
 };
 
 /**
@@ -75,4 +85,15 @@ function mapStateToProps(state) {
   };
 }
 
-export default withStyles(styles)(connect(mapStateToProps)(AppNavBar));
+/**
+ * Map dispatch actions
+ * @param {function} dispatch - dispatch function
+ * @return {{toggleDrawer: *}} - actions
+ */
+function mapDispatchToProps(dispatch) {
+  return {
+    toggleSidebar: () => dispatch(toggleDrawer()),
+  };
+}
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(AppNavBar));

@@ -27,7 +27,7 @@ class CallbackComponent extends Component {
     const { refreshToken } = queryString.parse(this.props.location.search);
     if (refreshToken) {
       localStorage.setItem('refreshToken', refreshToken);
-      this.redirectTo('/');
+      this.redirectTo('/users');
       this.props.onLogin();
     } else {
       this.redirectTo('/login');
