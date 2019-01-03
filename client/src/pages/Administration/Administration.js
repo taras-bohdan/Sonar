@@ -11,7 +11,6 @@ const styles = theme => ({
   administration: {
     paddingLeft: theme.spacing.unit,
     paddingRight: theme.spacing.unit,
-    display: 'flex',
   },
 });
 

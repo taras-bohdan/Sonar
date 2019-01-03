@@ -8,12 +8,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
-import Typography from '@material-ui/core/es/Typography/Typography';
+import Avatar from '@material-ui/core/Avatar';
 
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
   },
   table: {
@@ -36,16 +35,22 @@ function UsersTable(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>id</TableCell>
-            <TableCell>username</TableCell>
+            <TableCell>first name</TableCell>
+            <TableCell>last name</TableCell>
+            <TableCell>email</TableCell>
+            <TableCell>provider</TableCell>
+            <TableCell/>
           </TableRow>
         </TableHead>
         <TableBody>
           {items.map(row => {
             return (
-              <TableRow key={row.id}>
-                <TableCell>{row._id}</TableCell>
-                <TableCell>{row.username}</TableCell>
+              <TableRow key={row._id}>
+                <TableCell>{row.firstName}</TableCell>
+                <TableCell>{row.lastName}</TableCell>
+                <TableCell>{row.email}</TableCell>
+                <TableCell>{row.provider}</TableCell>
+                <TableCell><Avatar alt={row.username} src={row.photo}/></TableCell>
               </TableRow>
             );
           })}

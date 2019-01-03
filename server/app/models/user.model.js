@@ -11,8 +11,11 @@ const UserSchema = new Schema({
   firstName: String,
   lastName: String,
   password: String,
-  googleId: Number,
+  profileId: Number,
   refreshToken: String,
+  photo: String,
+  provider: String,
+  gender: String,
 });
 
 UserSchema.pre('save', hashPasswordOnChange);

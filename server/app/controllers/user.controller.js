@@ -6,10 +6,7 @@ import { User } from '../models/user.model';
  */
 export async function getAllUsers() {
   return await User.find({}, {
-    email: 1,
-    firstName: 1,
-    lastName: 1,
-    username: 1,
-    _id: 1,
+    refreshToken: 0,
+    __v: 0
   });
 }
