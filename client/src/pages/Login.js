@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
 
-import Logo from '../../components/Logo/Logo';
+import Logo from '../components/Logo/Logo';
 
 
 const LogoContainer = posed.div({

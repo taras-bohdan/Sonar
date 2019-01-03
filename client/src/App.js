@@ -4,15 +4,16 @@ import { connect } from 'react-redux';
 
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
-import Login from './pages/Login/Login';
-import Administration from './pages/Administration/Administration';
-import { PageNotFound } from './pages/PageNotFound/PageNotFound';
-import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
+import Login from './pages/Login';
+import Administration from './pages/Administration';
+import { PageNotFound } from './pages/PageNotFound';
+import PrivateRoute from './pages/PrivateRoute';
 import Alert from './components/Alert/Alert';
 import { Callback } from './components/Callback';
 import AppNavBar from './components/UI/AppNavBar';
 import AppDrawer from './components/UI/AppDrawer';
 import PropTypes from 'prop-types';
+import Dashboard from './pages/Dashboard';
 
 
 export const theme = createMuiTheme({
@@ -39,6 +40,7 @@ export const theme = createMuiTheme({
 const styles = theme => ({
   content: {
     padding: theme.spacing.unit * 3,
+    marginTop: theme.mixins.toolbar.minHeight,
   },
 });
 
@@ -59,7 +61,7 @@ class App extends Component {
         <AppDrawer/>
         <main className={classes.content}>
           <Switch>
-            <PrivateRoute exact path='/' component={Administration}/>
+            <PrivateRoute exact path='/' component={Dashboard}/>
             <PrivateRoute exact path='/users' component={Administration}/>
             <Route path='/callback' component={Callback}/>
             <Route exact path='/login' render={(props) => <Login {...props}/>}/>

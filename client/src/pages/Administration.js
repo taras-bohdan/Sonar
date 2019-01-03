@@ -3,8 +3,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
 import { object, func } from 'prop-types';
 
-import { userActions } from '../../actions';
-import UsersTable from '../../components/UsersTable';
+import { userActions } from '../actions';
+import UsersTable from '../components/UsersTable';
 import Typography from '@material-ui/core/es/Typography';
 
 const styles = theme => ({

@@ -9,6 +9,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import { compose } from 'redux';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -37,6 +38,11 @@ class AppDrawer extends React.Component {
     const { classes, showDrawer, location } = this.props;
 
     const items = [
+      {
+        text: 'Dashboard',
+        pathname: '/',
+        icon: <DashboardIcon/>,
+      },
       {
         text: 'Users',
         pathname: '/users',
