@@ -7,6 +7,7 @@ env:
 - PROJECT_PART=server
 
 install:
+- echo $PROJECT_PART
 - ls  && cd $PROJECT_PART && yarn
 
 script:
