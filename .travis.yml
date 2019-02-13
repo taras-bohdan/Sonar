@@ -7,7 +7,7 @@ env:
 - PROJECT_PART=server
 
 install:
-- cd $PROJECT_PART && yarn
+- ls  && cd $PROJECT_PART && yarn
 
 script:
 - ls && yarn run lint && yarn run coverage
