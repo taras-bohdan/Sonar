@@ -18,6 +18,7 @@ script:
 - ls && yarn run lint && yarn run coverage
     
 jobs:
+  include:
   - stage: sonar
     name: "Analyze with SonarCloud"
     script: sonar-scanner
