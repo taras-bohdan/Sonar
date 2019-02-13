@@ -1,27 +1,30 @@
 language: node_js
 node_js:
 - '11'
+
+env:
+- PROJECT_PART=client
+- PROJECT_PART=server
+
+install:
+- cd $PROJECT_PART && yarn
+
+script:
+- yarn run lint && yarn run coverage
+
 env:
   global:
     - CXX=g++-4.8
-jobs:  
-  include:
-    - stage: "Tests"                
-      name: "Client tests"
-      install:
-      - cd $PROJECT_PART && yarn
-      - npm install -g codecov
-      script: yarn run lint && yarn run coverage
-      env: PROJECT_PART=client
-    - script: yarn run lint && yarn run coverage
-      name: "Server Tests"
-      env: PROJECT_PART=server
-    - stage: "Sonar"
-      name: "Sonar analyzer"
-      script: sonar-scanner
-    - stage: "Codecov"
-      name: "Codecov"
-      script: codecov
+    
+jobs:
+  - stage: sonar
+    name: "Analyze with SonarCloud"
+    script: sonar-scanner
+  - stage: codecov
+    name: "Analyze with Codecov"
+    install: npm install -g codecov
+    script: codecov
+  
 addons:
   apt:
     sources:
