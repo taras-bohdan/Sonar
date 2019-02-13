@@ -11,6 +11,7 @@ install:
 - ls  && cd $PROJECT_PART && yarn
 
 script:
+- echo $PROJECT_PART
 - ls && yarn run lint && yarn run coverage
 
 env:
