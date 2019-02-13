@@ -12,6 +12,13 @@ after_script:
 env:
   global:
     - CXX=g++-4.8
+jobs:  
+  include:
+    - stage: "Tests"                
+      name: "Lint"
+      script: yarn run lint
+    - script: yarn run coverage   
+      name: "Unit Tests"
 matrix:
   include:
     - name: "Client Side"
