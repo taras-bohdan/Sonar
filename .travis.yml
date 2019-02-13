@@ -6,6 +6,7 @@ install:
 - npm install -g codecov
 script:
 - yarn run lint && yarn run coverage
+- sonar-scanner
 after_script:
 - "codecov"
 env:
@@ -24,3 +25,8 @@ addons:
     packages:
       - g++-4.8
       - libpcap-dev
+  sonarcloud:
+    organization: "tbohdanxdr-github"
+    token:
+      secure: 1af810b9512f20a1bc8ab38475f728b3aa841499
+  
