@@ -10,7 +10,7 @@ install:
 - cd $PROJECT_PART && yarn
 
 script:
-- yarn run lint && yarn run coverage
+- ls && yarn run lint && yarn run coverage
 
 env:
   global:
