@@ -93,3 +93,5 @@ function mapStateToProps(state) {
 const connectedApp = withStyles(styles)(withRouter(connect(mapStateToProps)(App)));
 
 export default connectedApp;
+
+
